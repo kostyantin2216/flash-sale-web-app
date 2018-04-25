@@ -1,0 +1,19 @@
+.form {
+    &__group {
+    }
+
+    &__input {
+       border-radius: $border-radius;
+       padding: .6rem .8rem;
+       border: .5px $color-grey-dark-2 solid;
+       width: 100%;
+    }
+
+    &__label {
+        font-weight: 600;
+        font-size: .8rem;
+        display: block;
+        padding-left: .1rem;
+    }
+
+}
