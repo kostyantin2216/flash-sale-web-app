@@ -70,3 +70,14 @@
     margin-bottom: $margin-big !important;
 }
 
+.hide-backface {
+    backface-visibility: hidden;
+}
+
+.show-backface {
+    backface-visibility: visible;
+}
+
+.table-cell {
+    display: table-cell;
+}

@@ -19,7 +19,7 @@ $color-grey-dark-1: #777;
 $color-grey-dark-2: #999;
 $color-grey-dark-3: #333;
 
-
+$color-error: #ff1133;
 
 // Grid
 $grid-width: 114rem;
@@ -28,7 +28,9 @@ $gutter-vertical-small: 1rem;
 $gutter-horizontal: 1rem;
 
 // Dimensions
-$default-font-size: .8rem;
+$default-font-size: .9rem;
+$small-font-size: .7rem;
+
 $border-radius: .2rem;
 
 $margin-small: 1rem;

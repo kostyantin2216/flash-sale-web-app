@@ -1,19 +1,39 @@
 .form {
-    &__group {
-    }
+    position: relative;
 
     &__input {
        border-radius: $border-radius;
        padding: .6rem .8rem;
        border: .5px $color-grey-dark-2 solid;
        width: 100%;
+       box-shadow: 0 .15rem .3rem rgba($color-black, .15);
     }
 
     &__label {
         font-weight: 600;
-        font-size: .8rem;
+        font-size: $default-font-size;
         display: block;
         padding-left: .1rem;
+    }
+
+    &__error {
+        font-size: $small-font-size;
+        color: $color-error;
+        display: none;
+    }
+
+    &__group {
+        &.invalid {
+            > .form__label {
+                color: $color-error;
+            }
+            > .form__input {
+                border: 1px $color-error solid;
+            }
+            > .form__error {
+                display: block;
+            }
+        }
     }
 
 }
