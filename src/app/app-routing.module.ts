@@ -1,3 +1,7 @@
+import { CheckoutComponent } from './secure/checkout/checkout.component';
+import { ProductDetailsComponent } from './public/home/product-details/product-details.component';
+import { ProductListComponent } from './public/home/product-list/product-list.component';
+import { HomeComponent } from './public/home/home.component';
 import { NewpasswordComponent } from './public/auth/newpassword/newpassword.component';
 import { ResendCodeComponent } from './public/auth/resend-code/resend-code.component';
 import { RegisterComponent } from './public/auth/register/register.component';
@@ -10,37 +14,66 @@ import { ForgotPasswordStep2Component } from './public/auth/forgot-pass/step-2/f
 
 const appRoutes: Routes = [
     {
-        path: 'login',
-        component: LoginComponent
+        path: '',
+        pathMatch: 'full',
+        redirectTo: 'home'
     },
     {
-        path: 'register',
-        component: RegisterComponent
+        path: 'auth',
+        children: [
+            {
+                path: 'login',
+                component: LoginComponent
+            },
+            {
+                path: 'register',
+                component: RegisterComponent
+            },
+            {
+                path: 'registrationConfirmation/:email',
+                component: ConfirmComponent
+            },
+            {
+                path: 'registrationConfirmation',
+                component: ConfirmComponent
+            },
+            {
+                path: 'forgotPassword',
+                component: ForgotPasswordStep1Component
+            },
+            {
+                path: 'forgotPassword/:email',
+                component: ForgotPasswordStep2Component
+            },
+            {
+                path: 'resendCode',
+                component: ResendCodeComponent
+            },
+            {
+                path: 'newPassword',
+                component: NewpasswordComponent
+            }
+        ]
     },
     {
-        path: 'registrationConfirmation/:email',
-        component: ConfirmComponent
+        path: 'home',
+        component: HomeComponent,
+        children: [
+            {
+                path: '',
+                component: ProductListComponent
+            },
+            {
+                path: ':category/:productName',
+                component: ProductDetailsComponent
+            }
+        ]
     },
     {
-        path: 'registrationConfirmation',
-        component: ConfirmComponent
-    },
-    {
-        path: 'forgotPassword',
-        component: ForgotPasswordStep1Component
-    },
-    {
-        path: 'forgotPassword/:email',
-        component: ForgotPasswordStep2Component
-    },
-    {
-        path: 'resendCode',
-        component: ResendCodeComponent
-    },
-    {
-        path: 'newPassword',
-        component: NewpasswordComponent
+        path: 'checkout',
+        component: CheckoutComponent
     }
+    
 ];
 
 @NgModule({
