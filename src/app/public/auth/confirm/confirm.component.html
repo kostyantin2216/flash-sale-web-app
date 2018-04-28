@@ -5,6 +5,9 @@
       <h2 class="heading-secondary margin-bottom-small">
         Confirm Email
       </h2>
+
+      <p class="margin-bottom-small">Please check your email for a confirmation code.</p>
+
       <form class="form" #f="ngForm" (ngSubmit)="processConfirmation(f)">
         <div class="row">
           <div class="form__group" 
@@ -51,6 +54,8 @@
             <button class="btn btn--green btn--fullblock" type="submit">Confirm</button>
         </div>
       </form>
+
+      <a class="page-dialog__link" [routerLink]="['/resendCode']" [queryParams]="{ email: emailModel }">Resend Code</a>
     </div>
   </div>
 </div>

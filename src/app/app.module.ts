@@ -3,15 +3,17 @@ import { NgModule } from '@angular/core';
 import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 
 import { AppComponent } from './app.component';
-import { LoginComponent } from './auth/login/login.component';
-import { RegisterComponent } from './auth/register/register.component';
+import { LoginComponent } from './public/auth/login/login.component';
+import { RegisterComponent } from './public/auth/register/register.component';
 import { AppRoutingModule } from './app-routing.module';
 import { UserLoginService } from './service/user-login.service';
 import { UserRegistrationService } from './service/user-registration.service';
 import { CognitoService } from './service/cognito.service';
-import { ConfirmComponent } from './auth/confirm/confirm.component';
-import { ForgotPasswordStep1Component } from './auth/forgot/step-1/forgot-password-step-1.component';
-import { ForgotPasswordStep2Component } from './auth/forgot/step-2/forgot-password-step-2.component';
+import { ConfirmComponent } from './public/auth/confirm/confirm.component';
+import { ForgotPasswordStep1Component } from './public/auth/forgot-pass/step-1/forgot-password-step-1.component';
+import { ForgotPasswordStep2Component } from './public/auth/forgot-pass/step-2/forgot-password-step-2.component';
+import { ResendCodeComponent } from './public/auth/resend-code/resend-code.component';
+import { NewpasswordComponent } from './public/auth/newpassword/newpassword.component';
 
 @NgModule({
   declarations: [
@@ -20,7 +22,9 @@ import { ForgotPasswordStep2Component } from './auth/forgot/step-2/forgot-passwo
     RegisterComponent,
     ConfirmComponent,
     ForgotPasswordStep1Component,
-    ForgotPasswordStep2Component
+    ForgotPasswordStep2Component,
+    ResendCodeComponent,
+    NewpasswordComponent
   ],
   imports: [
     BrowserModule,

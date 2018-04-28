@@ -1,16 +1,20 @@
-<div class="login">
+<div class="page-dialog page-dialog-split">
 
-  <div class="login__container">
-    <div class="login__left">
-      <span class="login__left--text">
+  <div class="page-dialog__container page-dialog-split__container">
+    <div class="page-dialog-split__left">
+      <span class="page-dialog-split__left--text">
         Log in to your Flash Sales account.
       </span>
     </div>
 
-    <div class="login__right padding-bottom-medium">
+    <div class="page-dialog-split__right padding-bottom-medium">
       <h2 class="heading-secondary margin-bottom-medium">
         Login
       </h2>
+
+      <div class="row" *ngIf="errorMessage">
+        <span class="error-message"><b>Error: </b>{{ errorMessage }}</span>
+      </div>
 
       <form class="form" (ngSubmit)="performLogin(f)" #f="ngForm">
         <div class="row">
@@ -58,8 +62,8 @@
         </div>
       </form>
 
-      <a class="login__link" [routerLink]="['/register']">Don't have an account?</a>
-      <a class="login__link" href="#">Forgot password?</a>
+      <a class="page-dialog__link" [routerLink]="['/register']">Don't have an account?</a>
+      <a class="page-dialog__link" [routerLink]="['/forgotPassword']">Forgot password?</a>
     </div>
   </div>
 

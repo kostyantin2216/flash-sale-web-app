@@ -42,34 +42,49 @@
       <div class="row">
         <div class="col-1-of-2">
           <div class="form__group"
-               [ngClass]="{ 'invalid': isInvalid(email) }">
-            <label for="email" class="form__label">Email</label>
-            <input id="email" 
-                  type="email" 
-                  class="form__input" 
-                  placeholder="Email"
-                  formControlName="email">
-            <div class="form__error">
-              Must be a valid email.
-            </div>
-          </div>
-        </div>
-        <div class="col-1-of-2">
-          <div class="form__group"
                [ngClass]="{ 'invalid': isInvalid(password) }">
             <label for="password" class="form__label">Password</label>
             <input id="password" 
                    type="password" 
                    class="form__input" 
-                   placeholder="password"
+                   placeholder="Password"
                    formControlName="password">
             <div class="form__error">
               Must be at least 8 characters long.
             </div>
           </div>
         </div>
+        <div class="col-1-of-2">
+            <div class="form__group"
+                 [ngClass]="{ 'invalid': isInvalid(confirmPassword) }">
+              <label for="confirmPassword" class="form__label">Confirm Password</label>
+              <input id="confirmPassword" 
+                     type="password" 
+                     class="form__input" 
+                     placeholder="Confirm Password"
+                     formControlName="confirmPassword">
+              <div class="form__error">
+                Must be at least 8 characters long.
+              </div>
+            </div>
+          </div>
       </div>
 
+      <div class="row">
+        <div class="form__group"
+             [ngClass]="{ 'invalid': isInvalid(email) }">
+          <label for="email" class="form__label">Email</label>
+          <input id="email" 
+                type="email" 
+                class="form__input" 
+                placeholder="Email"
+                formControlName="email">
+          <div class="form__error">
+            Must be a valid email.
+          </div>
+        </div>
+      </div>
+      {{ 'invalid telephone: ' + isInvalid(telephone) }}
       <div class="row">
         <div class="form__group margin-bottom-small"
              [ngClass]="{ 'invalid': isInvalid(telephone) }">

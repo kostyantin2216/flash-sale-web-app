@@ -2,8 +2,8 @@ import { NgForm } from '@angular/forms';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
-import { UserRegistrationService } from '../../service/user-registration.service';
-import { CognitoCallback } from '../../service/cognito.service';
+import { UserRegistrationService } from '../../../service/user-registration.service';
+import { CognitoCallback } from '../../../service/cognito.service';
 
 @Component({
   selector: 'app-confirm',

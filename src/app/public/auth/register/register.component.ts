@@ -1,9 +1,10 @@
+import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
-import { UserRegistrationService } from './../../service/user-registration.service';
-import { Component, OnInit } from '@angular/core';
+import { UserRegistrationService } from './../../../service/user-registration.service';
+import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { telephoneValidator } from '../../shared/telephone.validator';
-import { CognitoCallback } from '../../service/cognito.service';
+import { CognitoCallback } from '../../../service/cognito.service';
+import { CustomValidators } from '../../../shared/custom-validators.utility';
 
 export class RegistrationUser {
   firstname: string;
@@ -18,7 +19,7 @@ export class RegistrationUser {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, CognitoCallback {
+export class RegisterComponent implements CognitoCallback {
 
   registerForm: FormGroup;
   errorMsg: string;
@@ -30,9 +31,6 @@ export class RegisterComponent implements OnInit, CognitoCallback {
     private userRegistrationService: UserRegistrationService
   ) {
     this.createForm();
-  }
-
-  ngOnInit() {
   }
 
   createForm() {
@@ -56,28 +54,35 @@ export class RegisterComponent implements OnInit, CognitoCallback {
           Validators.minLength(8)
         ])
       ],
+      confirmPassword: [
+        ''
+      ],
       telephone: [
         '',
         Validators.compose([
           Validators.required,
-          telephoneValidator()
+          CustomValidators.telephone
         ])
       ]
+    }, {
+      validator: CustomValidators.Match('password', 'confirmPassword')
     });
   }
 
   performRegistration() {
     this.errorMsg = null;
     this.submitted = true;
-    const user: RegistrationUser = this.registerForm.value;
-    this.userRegistrationService.register(user, this);
+    if(this.registerForm.valid) {
+      const user: RegistrationUser = this.registerForm.value;
+      this.userRegistrationService.register(user, this);
+    }
   }
 
   cognitoCallback(message: string, result: any) {
     if (message) {
       this.errorMsg = message;
     } else {
-      this.router.navigate(['/confirm', result.user.username]);
+      this.router.navigate(['/registrationConfirmation', result.user.username]);
     }
   }
 
@@ -103,6 +108,10 @@ export class RegisterComponent implements OnInit, CognitoCallback {
 
   get password() {
     return this.registerForm.get('password');
+  }
+
+  get confirmPassword() {
+    return this.registerForm.get('confirmPassword');
   }
 
 }

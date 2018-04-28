@@ -1,6 +1,7 @@
-import { UserLoginService } from './../../../service/user-login.service';
+import { FormControl, NgForm } from '@angular/forms';
+import { UserLoginService } from './../../../../service/user-login.service';
 import { Router } from '@angular/router';
-import { CognitoCallback } from './../../../service/cognito.service';
+import { CognitoCallback } from './../../../../service/cognito.service';
 import { Component } from '@angular/core';
 
 @Component({
@@ -15,17 +16,20 @@ export class ForgotPasswordStep1Component implements CognitoCallback {
 
   constructor(
     private router: Router,
-    private userService: UserLoginService
+    private userLoginService: UserLoginService
   ) { }
 
-  onNext() {
+  onNext(form: NgForm) {
       this.errorMessage = null;
-    //  this.userService.forgotPassword(this.email, this);
+      if(form.valid) {
+          this.email = form.value['email'];
+          this.userLoginService.forgotPassword(this.email, this);
+      }
   }
 
   cognitoCallback(message: string, result: any) {
       if (message == null && result == null) {
-          this.router.navigate(['/home/forgotPassword', this.email]);
+          this.router.navigate(['/forgotPassword', this.email]);
       } else {
           this.errorMessage = message;
       }
