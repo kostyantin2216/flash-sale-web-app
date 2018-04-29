@@ -1,0 +1,61 @@
+<div class="page-dialog">
+
+  <div class="page-dialog__container">
+    <div class="table-cell">
+      <h2 class="heading-secondary margin-bottom-small">
+        Confirm Email
+      </h2>
+
+      <p class="margin-bottom-small">Please check your email for a confirmation code.</p>
+
+      <form class="form" #f="ngForm" (ngSubmit)="processConfirmation(f)">
+        <div class="row">
+          <div class="form__group" 
+               [ngClass]="{ 'invalid': email.invalid && (email.dirty || email.touched || f.submitted) }">
+            <label for="email" class="form__label">Email</label>
+            <input id="email" 
+                  name="email"         
+                  type="email" 
+                  class="form__input" 
+                  placeholder="Email"
+                  [ngModel]="emailModel" 
+                  required 
+                  email
+                  #email="ngModel" >
+            <div class="form__error">
+              Must be a valid email address.
+            </div>
+          </div>
+        </div>
+
+        <div class="row">
+          <div class="form__group"
+               [ngClass]="{ 'invalid': confirmationCode.invalid && (confirmationCode.dirty || confirmationCode.touched || f.submitted) }">
+            <label for="confirmationCode" class="form__label">Confirmation Code</label>
+            <input id="confirmationCode" 
+                   name="confirmationCode" 
+                   type="text" 
+                   class="form__input" 
+                   placeholder="Confirmation Code"
+                   ngModel
+                   required
+                   #confirmationCode="ngModel">
+            <div class="form__error">
+              Confirmation code is required
+            </div>
+          </div>
+        </div>
+
+        <div class="row" *ngIf="errorMsg">
+          <span class="error-message"><b>Error: </b>{{ errorMsg }}</span>
+        </div>
+
+        <div class="form__group margin-top-medium margin-bottom-small">
+            <button class="btn btn--green btn--fullblock" type="submit">Confirm</button>
+        </div>
+      </form>
+
+      <a class="page-dialog__link" [routerLink]="['/resendCode']" [queryParams]="{ email: emailModel }">Resend Code</a>
+    </div>
+  </div>
+</div>

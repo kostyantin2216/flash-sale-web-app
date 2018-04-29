@@ -1,0 +1,39 @@
+<div class="page-dialog">
+
+    <div class="page-dialog__container">
+      <div class="table-cell">
+        <h2 class="heading-secondary margin-bottom-small">
+          Resend Code
+        </h2>
+  
+        <form class="form">
+          <div class="row">
+            <div class="form__group">
+              <label for="email" class="form__label">Email</label>
+              <input id="email" 
+                     type="email" 
+                     class="form__input"
+                     [(ngModel)]="email"
+                     [ngModelOptions]="{ standalone: true }">
+            </div>
+          </div>
+  
+          <div class="row" *ngIf="errorMessage">
+            <span class="error-message"><b>Error: </b>{{ errorMessage }}</span>
+          </div>
+  
+          <div class="form__group margin-top-medium margin-bottom-small">
+            <button id="nextPage" 
+                    class="btn btn--green btn--fullblock" 
+                    type="submit"
+                    (click)="resendCode()" >
+              Next
+            </button>
+          </div>      
+        </form>
+  
+        <a class="page-dialog__link" [routerLink]="['/register']">Register</a>
+        <a class="page-dialog__link" [routerLink]="['/login']">Login</a>
+      </div>
+    </div>
+  </div>
