@@ -1,10 +1,37 @@
-import { Component } from '@angular/core';
+import { LOGIN, LOAD_USER } from './public/auth/store/auth.actions';
+import { Component, OnInit } from '@angular/core';
+import { CognitoService } from './service/cognito.service';
+import { Store } from '@ngrx/store';
+import { AuthState } from './public/auth/store/auth.reducers';
 
 @Component({
   selector: 'app-root',
   templateUrl: './app.component.html',
   styleUrls: ['./app.component.scss']
 })
-export class AppComponent {
-  title = 'app';
+export class AppComponent implements OnInit {
+
+  constructor(
+    private cognitoService: CognitoService,
+    private store: Store<AuthState>
+  ) { }
+
+  ngOnInit() {
+    let cognitoUser = this.cognitoService.getCurrentUser();
+    if (cognitoUser) {
+      cognitoUser.getSession((err, session) => {
+        if (!err && session.isValid()) {
+          this.store.dispatch({
+            type: LOGIN,
+            payload: session
+          });
+          this.store.dispatch({
+            type: LOAD_USER,
+            payload: cognitoUser
+          });
+        }
+      });
+    }
+  }
+
 }

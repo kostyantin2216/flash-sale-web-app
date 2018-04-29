@@ -3,14 +3,13 @@ import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute } from '@angular/router';
 import { Subscription } from 'rxjs/Subscription';
 import { UserRegistrationService } from '../../../service/user-registration.service';
-import { CognitoCallback } from '../../../service/cognito.service';
 
 @Component({
   selector: 'app-confirm',
   templateUrl: './confirm.component.html',
   styleUrls: ['./confirm.component.scss']
 })
-export class ConfirmComponent implements OnInit, OnDestroy, CognitoCallback {
+export class ConfirmComponent implements OnInit, OnDestroy {
 
   emailModel: string;
   errorMsg: string;
@@ -35,15 +34,14 @@ export class ConfirmComponent implements OnInit, OnDestroy, CognitoCallback {
 
   processConfirmation(form: NgForm) {
     this.errorMsg = null;
-    this.userRegistrationService.confirmRegistration(this.emailModel, form.value.confirmationCode, this);
-  }
-
-  cognitoCallback(message: string, result: any) {
-    if (message) {
-      this.errorMsg = message;
-    } else {
-      this.router.navigate(['/login']);
-    }
+    this.userRegistrationService.confirmRegistration(this.emailModel, form.value.confirmationCode).subscribe(
+        result => {
+          this.router.navigate(['/auth', 'login']);
+        },
+        err => {
+          this.errorMsg = err.message;
+        }
+    );
   }
 
 }

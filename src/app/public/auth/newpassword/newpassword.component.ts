@@ -1,10 +1,10 @@
+import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs/Subscription';
 import { CustomValidators } from './../../../shared/custom-validators.utility';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UserLoginService } from './../../../service/user-login.service';
+import { UserLoginService, AuthenticationResult } from './../../../service/user-login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { CognitoCallback, LoggedInCallback } from '../../../service/cognito.service';
 import { UserRegistrationService } from '../../../service/user-registration.service';
 
 export class NewPasswordUser {
@@ -20,7 +20,7 @@ export class NewPasswordUser {
   templateUrl: './newpassword.component.html',
   styleUrls: ['./newpassword.component.scss']
 })
-export class NewpasswordComponent implements OnInit, OnDestroy, CognitoCallback, LoggedInCallback {
+export class NewpasswordComponent implements OnInit, OnDestroy {
 
   form: FormGroup;
   errorMessage: string;
@@ -39,7 +39,6 @@ export class NewpasswordComponent implements OnInit, OnDestroy, CognitoCallback,
   }
 
   ngOnInit() {
-    this.userLoginService.isAuthenticated(this);
     this.emailSub = this.route.queryParams.subscribe((params: Params) => {
       this.email.setValue(params['email']);
     });
@@ -80,28 +79,21 @@ export class NewpasswordComponent implements OnInit, OnDestroy, CognitoCallback,
   onSubmit() {
     this.submitted = true;
     this.errorMessage = null;
-    if(this.form.valid) {
+    if (this.form.valid) {
       const user = new NewPasswordUser(
         this.form.value.email,
         this.form.value.existingPassword,
         this.form.value.password
       );
 
-      this.userRegistrationService.newPassword(user, this);
-    }
-  }
-
-  cognitoCallback(message: string, result: any) {
-    if(message) {
-      this.errorMessage = message;
-    } else {
-      this.isLoggedIn(message, true);
-    }
-  }
-
-  isLoggedIn(message: string, isLoggedIn: boolean) {
-    if(isLoggedIn) {
-      // TODO: redirect home.
+      this.userRegistrationService.newPassword(user).subscribe(
+        (session: CognitoUserSession) => {
+          this.router.navigate(['/']);
+        },
+        err => {
+          this.errorMessage = err;
+        }
+      );
     }
   }
 

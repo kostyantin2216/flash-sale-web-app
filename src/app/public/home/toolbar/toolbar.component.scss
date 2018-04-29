@@ -1,0 +1,39 @@
+@import "~sass/abstract/variables";
+@import "~sass/abstract/mixins";
+
+.toolbar {
+    background-color: $color-grey-light-2;
+    border-bottom: 1px solid $color-grey-dark-2;
+    position: fixed;
+    width: 100%;
+    padding: .3rem 2rem;
+
+    &__link {
+        &,
+        &:link, 
+        &:visited {
+            text-decoration: none;
+            font-size: $medium-font-size;
+            color: $color-black;
+        }
+
+        &:hover {
+            text-decoration: underline;
+        }
+    }
+
+    &__user {
+        float: left;
+        text-transform: capitalize;
+    }
+
+    &__logout {
+        float: left;
+        margin-left: 1.5rem;
+    }
+
+    &__cart {
+        float: right;
+    }
+
+}

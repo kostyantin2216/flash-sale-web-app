@@ -1,14 +1,27 @@
 import { environment } from './../../environments/environment';
-import { CognitoCallback, CognitoService, LoggedInCallback } from './cognito.service';
+import { CognitoService } from './cognito.service';
 import { Injectable } from '@angular/core';
 import { AuthenticationDetails, CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
 import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
+import { Observable } from 'rxjs/Observable';
+import { Observer } from 'rxjs/Observer';
+
+import { Store } from '@ngrx/store';
+import { LOAD_USER } from './../public/auth/store/auth.actions';
+import { AuthState } from './../public/auth/store/auth.reducers';
+
+export class AuthenticationResult {
+    constructor(
+        public message: string,
+        public authenticated: boolean
+    ) { }
+}
 
 @Injectable()
 export class UserLoginService {
 
-  private onLoginSuccess = (callback: CognitoCallback, session: CognitoUserSession) => {
+  private onLoginSuccess = (observer: Observer<CognitoUserSession>, session: CognitoUserSession) => {
 
     console.log("In authenticateUser onSuccess callback");
 
@@ -25,115 +38,130 @@ export class UserLoginService {
     let sts = new STS(clientParams);
     sts.getCallerIdentity(function (err, data) {
         console.log("UserLoginService: Successfully set the AWS credentials");
-        callback.cognitoCallback(null, session);
+        observer.next(session);
+        observer.complete();
     });
   }
 
-  private onLoginError = (callback: CognitoCallback, err) => {
-    callback.cognitoCallback(err.message, null);
+  private onLoginError = (observer: Observer<CognitoUserSession>, err) => {
+    observer.error(err);
+    observer.complete();
   }
 
   constructor(
-    private cognitoService: CognitoService
+    private cognitoService: CognitoService,
+    private store: Store<AuthState>
   ) { }
 
-  authenticate(username: string, password: string, callback: CognitoCallback) {
-    console.log("UserLoginService: starting the authentication");
+  authenticate(username: string, password: string): Observable<CognitoUserSession> {
+    return Observable.create((observer: Observer<CognitoUserSession>) => {
+        console.log("UserLoginService: starting the authentication");
 
-    const authenticationData = {
-        Username: username,
-        Password: password,
-    };
-    const authenticationDetails = new AuthenticationDetails(authenticationData);
+        const authenticationData = {
+            Username: username,
+            Password: password,
+        };
+        const authenticationDetails = new AuthenticationDetails(authenticationData);
 
-    const userData = {
-        Username: username,
-        Pool: this.cognitoService.getUserPool()
-    };
+        const userData = {
+            Username: username,
+            Pool: this.cognitoService.getUserPool()
+        };
 
-    console.log("UserLoginService: Params set...Authenticating the user");
-    const cognitoUser = new CognitoUser(userData);
-    console.log("UserLoginService: config is " + AWS.config);
-    cognitoUser.authenticateUser(authenticationDetails, {
-        newPasswordRequired: (userAttributes, requiredAttributes) => callback.cognitoCallback(`User needs to set password.`, null),
-        onSuccess: result => this.onLoginSuccess(callback, result),
-        onFailure: err => this.onLoginError(callback, err),
-        mfaRequired: (challengeName, challengeParameters) => {
-            callback.handleMFAStep(challengeName, challengeParameters, (confirmationCode: string) => {
-                cognitoUser.sendMFACode(confirmationCode, {
-                    onSuccess: result => this.onLoginSuccess(callback, result),
-                    onFailure: err => this.onLoginError(callback, err)
-                });
+        console.log("UserLoginService: Params set...Authenticating the user");
+        const cognitoUser = new CognitoUser(userData);
+        console.log("UserLoginService: config is " + AWS.config);
+        cognitoUser.authenticateUser(authenticationDetails, {
+            newPasswordRequired: (userAttributes, requiredAttributes) => {
+                observer.error(`User needs to set password.`);
+                observer.complete();
+            },
+            onSuccess: result => {
+                this.onLoginSuccess(observer, result);
+                
+            this.store.dispatch({
+              type: LOAD_USER,
+              payload: cognitoUser
             });
-        }
+            },
+            onFailure: err => this.onLoginError(observer, err)
+        });
     });
   }
 
-  forgotPassword(username: string, callback: CognitoCallback) {
-    let userData = {
-        Username: username,
-        Pool: this.cognitoService.getUserPool()
-    };
+  forgotPassword(username: string): Observable<void> {
+    return Observable.create((observer: Observer<void>) => {
+        let userData = {
+            Username: username,
+            Pool: this.cognitoService.getUserPool()
+        };
 
-    let cognitoUser = new CognitoUser(userData);
+        let cognitoUser = new CognitoUser(userData);
 
-    cognitoUser.forgotPassword({
-        onSuccess: function () {
-
-        },
-        onFailure: function (err) {
-            callback.cognitoCallback(err.message, null);
-        },
-        inputVerificationCode() {
-            callback.cognitoCallback(null, null);
-        }
+        cognitoUser.forgotPassword({
+            onSuccess: function () {
+                observer.next(null);
+                observer.complete();
+            },
+            onFailure: function (err) {
+                observer.error(err);
+                observer.complete();
+            },
+            inputVerificationCode() {
+                observer.next(null);
+                observer.complete();
+            }
+        });
     });
   }
-  
-  confirmNewPassword(email: string, verificationCode: string, password: string, callback: CognitoCallback) {
-      let userData = {
-          Username: email,
-          Pool: this.cognitoService.getUserPool()
-      };
-  
-      let cognitoUser = new CognitoUser(userData);
-  
-      cognitoUser.confirmPassword(verificationCode, password, {
-          onSuccess: function () {
-              callback.cognitoCallback(null, null);
-          },
-          onFailure: function (err) {
-              callback.cognitoCallback(err.message, null);
-          }
+
+  confirmNewPassword(email: string, verificationCode: string, password: string): Observable<void> {
+      return Observable.create((observer: Observer<void>) => {
+        let userData = {
+            Username: email,
+            Pool: this.cognitoService.getUserPool()
+        };
+
+        let cognitoUser = new CognitoUser(userData);
+
+        cognitoUser.confirmPassword(verificationCode, password, {
+            onSuccess: function () {
+                observer.next(null);
+                observer.complete();
+            },
+            onFailure: function (err) {
+                observer.error(err);
+                observer.complete();
+            }
+        });
       });
   }
-  
+
   logout() {
-      console.log("UserLoginService: Logging out");
       this.cognitoService.getCurrentUser().signOut();
-  
   }
-  
-  isAuthenticated(callback: LoggedInCallback) {
-      if (callback == null)
-          throw("UserLoginService: Callback in isAuthenticated() cannot be null");
-  
+
+  isAuthenticated(): Observable<boolean> {
       let cognitoUser = this.cognitoService.getCurrentUser();
-  
+
       if (cognitoUser != null) {
-          cognitoUser.getSession(function (err, session) {
-              if (err) {
-                  console.log("UserLoginService: Couldn't get the session: " + err, err.stack);
-                  callback.isLoggedIn(err, false);
-              }
-              else {
-                  console.log("UserLoginService: Session is " + session.isValid());
-                  callback.isLoggedIn(err, session.isValid());
-              }
-          });
+          return Observable.create((observer: Observer<boolean>) => {
+              cognitoUser.getSession(function (err, session) {
+                  if (err) {
+                      console.log("UserLoginService: Couldn't get the session: " + err, err.stack);
+                      observer.error(err);
+                  }
+                  else {
+                      console.log("UserLoginService: Session is " + session.isValid());
+                      observer.next(session.isValid());
+                  }
+                  observer.complete();
+              });
+        });
       } else {
           console.log("UserLoginService: can't retrieve the current user");
-          callback.isLoggedIn("Can't retrieve the CurrentUser", false);
+          return Observable.of(false);
       }
   }
+
 }

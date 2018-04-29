@@ -6,16 +6,6 @@ import * as AWS from 'aws-sdk/global';
 import * as awsservice from 'aws-sdk/lib/service';
 import * as CognitoIdentity from 'aws-sdk/clients/cognitoidentity';
 
-export interface CognitoCallback {
-    cognitoCallback(message: string, result: any): void;
-
-    handleMFAStep?(challengeName: string, challengeParameters: ChallengeParameters, callback: (confirmationCode: string) => any): void;
-}
-
-export interface LoggedInCallback {
-    isLoggedIn(message: string, loggedIn: boolean): void;
-}
-
 export interface ChallengeParameters {
     CODE_DELIVERY_DELIVERY_MEDIUM: string;
 

@@ -1,9 +1,9 @@
+import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { UserRegistrationService } from './../../../service/user-registration.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
-import { CognitoCallback } from '../../../service/cognito.service';
 import { CustomValidators } from '../../../shared/custom-validators.utility';
 
 export class RegistrationUser {
@@ -19,7 +19,7 @@ export class RegistrationUser {
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements CognitoCallback {
+export class RegisterComponent {
 
   registerForm: FormGroup;
   errorMsg: string;
@@ -72,17 +72,16 @@ export class RegisterComponent implements CognitoCallback {
   performRegistration() {
     this.errorMsg = null;
     this.submitted = true;
-    if(this.registerForm.valid) {
+    if (this.registerForm.valid) {
       const user: RegistrationUser = this.registerForm.value;
-      this.userRegistrationService.register(user, this);
-    }
-  }
-
-  cognitoCallback(message: string, result: any) {
-    if (message) {
-      this.errorMsg = message;
-    } else {
-      this.router.navigate(['/registrationConfirmation', result.user.username]);
+      this.userRegistrationService.register(user).subscribe(
+        (result: ISignUpResult) => {
+          this.router.navigate(['/auth', 'registrationConfirmation', result.user.getUsername()]);
+        },
+        err => {
+          this.errorMsg = err.message;
+        }
+      );
     }
   }
 

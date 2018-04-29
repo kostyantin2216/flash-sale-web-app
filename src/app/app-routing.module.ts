@@ -19,43 +19,6 @@ const appRoutes: Routes = [
         redirectTo: 'home'
     },
     {
-        path: 'auth',
-        children: [
-            {
-                path: 'login',
-                component: LoginComponent
-            },
-            {
-                path: 'register',
-                component: RegisterComponent
-            },
-            {
-                path: 'registrationConfirmation/:email',
-                component: ConfirmComponent
-            },
-            {
-                path: 'registrationConfirmation',
-                component: ConfirmComponent
-            },
-            {
-                path: 'forgotPassword',
-                component: ForgotPasswordStep1Component
-            },
-            {
-                path: 'forgotPassword/:email',
-                component: ForgotPasswordStep2Component
-            },
-            {
-                path: 'resendCode',
-                component: ResendCodeComponent
-            },
-            {
-                path: 'newPassword',
-                component: NewpasswordComponent
-            }
-        ]
-    },
-    {
         path: 'home',
         component: HomeComponent,
         children: [
@@ -73,7 +36,6 @@ const appRoutes: Routes = [
         path: 'checkout',
         component: CheckoutComponent
     }
-    
 ];
 
 @NgModule({

@@ -1,3 +1,6 @@
-<p>
-  toolbar works!
-</p>
+<div class="toolbar">
+  <a class="toolbar__user toolbar__link" href="#"><fa name="user-circle" ></fa>Hello, {{ (auth$ | async).user.firstName }} {{ (auth$ | async).user.lastName }}</a>
+  <a class="toolbar__logout toolbar__link" (click)="logout()" *ngIf="(auth$ | async).authenticated"><fa name="sign-out" ></fa>Log Out</a>
+  <a class="toolbar__logout toolbar__link" [routerLink]="['/auth', 'login']" *ngIf="!(auth$ | async).authenticated"><fa name="sign-in" ></fa>Log In</a>
+  <a class="toolbar__cart toolbar__link" href="#"><fa name="shopping-cart"></fa>{{ cartItems }} items in cart</a>
+</div>
