@@ -1,0 +1,14 @@
+<div class="product">
+  <img class="product__image" src="{{ product.image }}">
+  <span class="product__cover product__title">{{ product.shortName }}</span>
+  <div class="product__cover product__details">
+    <div class="product__details--brand">{{ product.brand }}</div>
+    <div class="product__details--name">{{ product.name }}</div>
+    <div class="product__details--retail-price">Retail: {{ product.retailPrice }}R</div>
+    <div class="product__details--price">{{ product.price }}R</div>
+    <div class="product__details--saved">
+        <div class="product__details--saved-label">Save</div>
+        <div class="product__details--saved-percent">{{ percentageSaved }}%</div>
+    </div>
+  </div>
+</div>

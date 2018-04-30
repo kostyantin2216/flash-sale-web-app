@@ -4,6 +4,7 @@ import { AuthState } from './../../auth/store/auth.reducers';
 import { Component, OnInit } from '@angular/core';
 import { Store, select } from '@ngrx/store';
 import { LOGOUT } from '../../auth/store/auth.actions';
+import { AppState } from '../../../store/app.reducers';
 
 @Component({
   selector: 'app-toolbar',
@@ -17,7 +18,7 @@ export class ToolbarComponent implements OnInit {
   cartItems = 0;
 
   constructor(
-    private store: Store<AuthState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

@@ -1,8 +1,8 @@
+import { AppState } from './store/app.reducers';
 import { LOGIN, LOAD_USER } from './public/auth/store/auth.actions';
 import { Component, OnInit } from '@angular/core';
 import { CognitoService } from './service/cognito.service';
 import { Store } from '@ngrx/store';
-import { AuthState } from './public/auth/store/auth.reducers';
 
 @Component({
   selector: 'app-root',
@@ -13,7 +13,7 @@ export class AppComponent implements OnInit {
 
   constructor(
     private cognitoService: CognitoService,
-    private store: Store<AuthState>
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {

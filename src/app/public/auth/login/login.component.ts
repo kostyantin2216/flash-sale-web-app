@@ -1,5 +1,4 @@
 import { LOGIN, LOAD_USER } from './../store/auth.actions';
-import { AuthState } from './../store/auth.reducers';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import { element } from 'protractor';
 import { Router } from '@angular/router';
@@ -8,6 +7,7 @@ import { Component, OnInit } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CognitoService } from '../../../service/cognito.service';
+import { AppState } from '../../../store/app.reducers';
 
 @Component({
   selector: 'app-login',
@@ -23,7 +23,7 @@ export class LoginComponent {
     private cognitoService: CognitoService,
     private userLoginService: UserLoginService,
     private router: Router,
-    private store: Store<AuthState>
+    private store: Store<AppState>
   ) { }
 
   performLogin(form: NgForm) {

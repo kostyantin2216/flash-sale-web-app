@@ -1,3 +1,4 @@
+import { AppState } from './../store/app.reducers';
 import { environment } from './../../environments/environment';
 import { CognitoService } from './cognito.service';
 import { Injectable } from '@angular/core';
@@ -6,10 +7,8 @@ import * as AWS from "aws-sdk/global";
 import * as STS from "aws-sdk/clients/sts";
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
-
 import { Store } from '@ngrx/store';
 import { LOAD_USER } from './../public/auth/store/auth.actions';
-import { AuthState } from './../public/auth/store/auth.reducers';
 
 export class AuthenticationResult {
     constructor(
@@ -50,7 +49,7 @@ export class UserLoginService {
 
   constructor(
     private cognitoService: CognitoService,
-    private store: Store<AuthState>
+    private store: Store<AppState>
   ) { }
 
   authenticate(username: string, password: string): Observable<CognitoUserSession> {
@@ -78,7 +77,7 @@ export class UserLoginService {
             },
             onSuccess: result => {
                 this.onLoginSuccess(observer, result);
-                
+
             this.store.dispatch({
               type: LOAD_USER,
               payload: cognitoUser

@@ -1,5 +1,4 @@
 import { CognitoUserSession, CognitoUser } from 'amazon-cognito-identity-js';
-import { Tokens } from './../../../shared/tokens.model';
 import { Action } from '@ngrx/store';
 import { User } from '../../../shared/user.model';
 

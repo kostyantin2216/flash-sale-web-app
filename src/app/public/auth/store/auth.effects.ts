@@ -2,7 +2,6 @@ import { User } from './../../../shared/user.model';
 import { Observer } from 'rxjs/Observer';
 import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs/Observable';
-import { Tokens } from './../../../shared/tokens.model';
 import { UserLoginService } from './../../../service/user-login.service';
 import { Router } from '@angular/router';
 import { Injectable } from '@angular/core';

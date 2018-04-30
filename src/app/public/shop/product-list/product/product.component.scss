@@ -1,0 +1,82 @@
+@import "~sass/abstract/variables";
+
+.product {
+    position: relative;
+    margin: .5rem;
+    line-height: 0;
+    cursor: pointer;
+
+    &__image {
+        width: 100%;
+        object-fit: cover;
+    }
+
+    &__cover {
+        position: absolute;
+        width: 100%;
+        background: rgba($color-black, 0.8);
+        padding: 1rem;
+        line-height: 1rem;
+        transition: all .5s;
+        color: $color-white;
+    }
+
+    &__title {
+        bottom: 0;
+    }
+
+    &__details {
+        opacity: 0;
+        transform: scale(1, 0);
+        bottom: -1.6rem;
+
+        &--brand {
+            font-size: $x-large-font-size;
+            margin-right: 3.3rem;
+        }
+
+        &--name {
+            font-size: $medium-font-size;
+            margin-bottom: .5rem;
+            margin-right: 3.3rem;
+        }
+
+        &--retail-price {
+            font-size: $small-font-size;
+        }
+
+        &--price {
+            font-size: $xx-large-font-size;
+        }
+
+        &--saved {
+            position: absolute;
+            top: 0;
+            right: 0;
+            text-align: center;
+            padding: 1rem;
+            background: rgba($color-primary, .5);
+
+            &-label {
+                margin-bottom: .4rem;
+                font-weight: 600;
+            }
+
+            &-percent {
+                font-size: $x-large-font-size;
+            }
+        }
+    }
+
+    &:hover &__title {
+        opacity: 0;
+        transform: scale(1, 0);
+        bottom: -1.6rem;
+    }
+
+    &:hover &__details {
+        opacity: 1;
+        transform: scale(1, 1);
+        bottom: 0;
+    }
+}

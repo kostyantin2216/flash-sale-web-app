@@ -1,3 +1,4 @@
+import { AppState } from './../../store/app.reducers';
 import { LOGIN } from './store/auth.actions';
 import { Observer } from 'rxjs/Observer';
 import { CognitoUser } from 'amazon-cognito-identity-js';
@@ -17,17 +18,17 @@ import { CognitoService } from '../../service/cognito.service';
 export class NotAuthGuard implements CanActivate {
 
   constructor(
-      private store: Store<AuthState>,
+      private store: Store<AppState>,
       private cognitoService: CognitoService,
       private loginService: UserLoginService,
       private router: Router
   ) {}
 
   canActivate(route: ActivatedRouteSnapshot, state: RouterStateSnapshot) {
-    return this.store.select('authenticated')
+    return this.store.select('auth')
         .take(1)
-        .switchMap((authenticated: boolean) => {
-          if (authenticated) {
+        .switchMap((authState: AuthState) => {
+          if (authState.authenticated) {
             return Observable.of(false);
           } else {
             return this.loginService.isAuthenticated().map((isAuthenticated: boolean) => !isAuthenticated);

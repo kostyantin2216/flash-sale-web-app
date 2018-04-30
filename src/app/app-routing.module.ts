@@ -1,7 +1,4 @@
 import { CheckoutComponent } from './secure/checkout/checkout.component';
-import { ProductDetailsComponent } from './public/home/product-details/product-details.component';
-import { ProductListComponent } from './public/home/product-list/product-list.component';
-import { HomeComponent } from './public/home/home.component';
 import { NewpasswordComponent } from './public/auth/newpassword/newpassword.component';
 import { ResendCodeComponent } from './public/auth/resend-code/resend-code.component';
 import { RegisterComponent } from './public/auth/register/register.component';
@@ -16,21 +13,7 @@ const appRoutes: Routes = [
     {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'home'
-    },
-    {
-        path: 'home',
-        component: HomeComponent,
-        children: [
-            {
-                path: '',
-                component: ProductListComponent
-            },
-            {
-                path: ':category/:productName',
-                component: ProductDetailsComponent
-            }
-        ]
+        redirectTo: 'shop'
     },
     {
         path: 'checkout',

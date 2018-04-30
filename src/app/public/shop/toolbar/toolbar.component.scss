@@ -22,6 +22,10 @@
         }
     }
 
+    &__label {
+        font-size: $medium-font-size;
+    }
+
     &__user {
         float: left;
         text-transform: capitalize;

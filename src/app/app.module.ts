@@ -1,3 +1,4 @@
+import { ProductService } from './service/product.service';
 import { environment } from './../environments/environment';
 import { NotAuthGuard } from './public/auth/not-auth.guard';
 import { AuthModule } from './public/auth/auth.module';
@@ -14,39 +15,28 @@ import { AppRoutingModule } from './app-routing.module';
 import { UserLoginService } from './service/user-login.service';
 import { UserRegistrationService } from './service/user-registration.service';
 import { CognitoService } from './service/cognito.service';
-import { ToolbarComponent } from './public/home/toolbar/toolbar.component';
-import { HomeComponent } from './public/home/home.component';
-import { ProductListComponent } from './public/home/product-list/product-list.component';
-import { ProductComponent } from './public/home/product-list/product/product.component';
-import { ProductDetailsComponent } from './public/home/product-details/product-details.component';
-import { CartComponent } from './public/home/cart/cart.component';
-import { FooterComponent } from './public/home/footer/footer.component';
 import { CheckoutComponent } from './secure/checkout/checkout.component';
 import '../rxjs.imports';
 import { authReducer } from './public/auth/store/auth.reducers';
 import { AuthEffects } from './public/auth/store/auth.effects';
+import { ShopModule } from './public/shop/shop.module';
+import { reducers } from './store/app.reducers';
+import { ShopEffects } from './public/shop/store/shop.effects';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    ToolbarComponent,
-    HomeComponent,
-    ProductListComponent,
-    ProductComponent,
-    ProductDetailsComponent,
-    CartComponent,
-    FooterComponent,
     CheckoutComponent
   ],
   imports: [
     BrowserModule,
-    AppRoutingModule,
     AuthModule,
-    AngularFontAwesomeModule,
+    ShopModule,
+    AppRoutingModule,
 
-    StoreModule.forRoot({auth: authReducer}),
-    EffectsModule.forRoot([AuthEffects]),
+    StoreModule.forRoot(reducers),
+    EffectsModule.forRoot([AuthEffects, ShopEffects]),
     StoreDevtoolsModule.instrument({
       maxAge: 25, // Retains last 25 states
       logOnly: environment.production, // Restrict extension to log-only mode
@@ -56,6 +46,7 @@ import { AuthEffects } from './public/auth/store/auth.effects';
     CognitoService,
     UserRegistrationService,
     UserLoginService,
+    ProductService,
     NotAuthGuard
   ],
   bootstrap: [AppComponent]
