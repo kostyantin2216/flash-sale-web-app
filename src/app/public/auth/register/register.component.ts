@@ -1,3 +1,4 @@
+import { CognitoAuthService } from './../../../service/cognito-auth.service';
 import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
@@ -28,7 +29,8 @@ export class RegisterComponent {
   constructor(
     private router: Router,
     private fb: FormBuilder,
-    private userRegistrationService: UserRegistrationService
+    private userRegistrationService: UserRegistrationService,
+    private authService: CognitoAuthService
   ) {
     this.createForm();
   }
@@ -83,6 +85,10 @@ export class RegisterComponent {
         }
       );
     }
+  }
+
+  loginWithFacebook() {
+    this.authService.login();
   }
 
   isInvalid(cntrl: FormControl) {

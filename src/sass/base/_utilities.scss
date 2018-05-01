@@ -58,6 +58,10 @@
     margin-top: $margin-big !important;
 }
 
+.margin-bottom-tiny {
+    margin-bottom: $margin-tiny !important;
+}
+
 .margin-bottom-small {
     margin-bottom: $margin-small !important;
 }
@@ -70,6 +74,22 @@
     margin-bottom: $margin-big !important;
 }
 
+.margin-right-tiny {
+    margin-right: $margin-tiny !important;
+}
+
+.margin-right-small {
+    margin-right: $margin-small !important;
+}
+
+.margin-right-medium {
+    margin-right: $margin-medium !important;
+}
+
+.margin-right-big {
+    margin-right: $margin-big !important;
+}
+
 .hide-backface {
     backface-visibility: hidden;
 }
@@ -80,4 +100,23 @@
 
 .table-cell {
     display: table-cell;
+}
+
+.divider {
+    display: flex;
+	flex-basis: 100%;
+	align-items: center;
+	color: rgba(0, 0, 0, 0.35);
+    margin: 8px 0px;
+    
+    &::after,
+    &::before {
+        content: "";
+        flex-grow: 1;
+        background: rgba(0, 0, 0, 0.35);
+        height: 1px;
+        font-size: 0px;
+        line-height: 0px;
+        margin: 0px 8px;
+    }
 }

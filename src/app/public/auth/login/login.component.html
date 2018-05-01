@@ -16,6 +16,12 @@
         <span class="error-message"><b>Error: </b>{{ errorMessage }}</span>
       </div>
 
+      <button class="btn btn--blue btn--fullblock margin-bottom-small" (click)="facebookLogin()"><fa name="facebook-square" size="lg" class="margin-right-tiny"></fa>Log In With Facebook</button>
+
+      <div class="divider">
+          OR
+      </div> 
+
       <form class="form" (ngSubmit)="performLogin(f)" #f="ngForm">
         <div class="row">
           <div class="col-1-of-2">
@@ -57,7 +63,7 @@
           </div>
         </div>
 
-        <div class="form__group margin-top-small margin-bottom-small">
+        <div class="form__group margin-top-small margin-bottom-tiny">
             <button class="btn btn--green btn--fullblock" type="submit">Log In</button>
         </div>
       </form>

@@ -65,6 +65,15 @@
         }
     }
 
+    &--blue {
+        background-color: $color-blue;
+        color: $color-white;
+    
+        &::after {
+            background-color: $color-blue;
+        }
+    }
+
     &--fullblock {
         border-radius: $border-radius;
         display: block;

@@ -1,3 +1,4 @@
+import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { NgModule } from '@angular/core';
 
 import { LoginComponent } from './login/login.component';
@@ -25,7 +26,8 @@ import { BrowserModule } from '@angular/platform-browser';
         BrowserModule,
         FormsModule,
         ReactiveFormsModule,
-        AuthRoutingModule
+        AuthRoutingModule,
+        AngularFontAwesomeModule
     ]
 })
 export class AuthModule { }

@@ -63,7 +63,7 @@ export class CognitoService {
         const logins: CognitoIdentity.LoginsMap = {};
         logins[url] = idTokenJwt;
         const params = {
-            IdentityPoolId: CognitoService._IDENTITY_POOL_ID, /* required */
+            IdentityPoolId: CognitoService._IDENTITY_POOL_ID,
             Logins: logins
         };
         const serviceConfigs = <awsservice.ServiceConfigurationOptions>{};

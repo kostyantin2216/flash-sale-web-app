@@ -1,30 +1,48 @@
+import { CognitoAuthService } from './../../../service/cognito-auth.service';
 import { LOGIN, LOAD_USER } from './../store/auth.actions';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import { element } from 'protractor';
-import { Router } from '@angular/router';
+import { Router, ActivatedRoute } from '@angular/router';
 import { UserLoginService, AuthenticationResult } from './../../../service/user-login.service';
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
 import { CognitoService } from '../../../service/cognito.service';
 import { AppState } from '../../../store/app.reducers';
+import { Subscription } from 'rxjs/Subscription';
 
 @Component({
   selector: 'app-login',
   templateUrl: './login.component.html',
   styleUrls: ['./login.component.scss']
 })
-export class LoginComponent {
+export class LoginComponent implements OnInit, OnDestroy {
 
   errorMessage: string;
   email: string;
 
+  fragmentSub: Subscription;
+
   constructor(
+    private cognitoAuth: CognitoAuthService,
     private cognitoService: CognitoService,
     private userLoginService: UserLoginService,
     private router: Router,
+    private route: ActivatedRoute,
     private store: Store<AppState>
   ) { }
+
+  ngOnInit() {
+    this.fragmentSub = this.route.fragment.subscribe((fragment: string) => {
+      if (fragment && fragment.startsWith('access_token')) {
+        this.cognitoAuth.login();
+      }
+    });
+  }
+
+  ngOnDestroy() {
+    this.fragmentSub.unsubscribe();
+  }
 
   performLogin(form: NgForm) {
     this.errorMessage = null;
@@ -53,6 +71,10 @@ export class LoginComponent {
         }
       );
     }
+  }
+
+  facebookLogin() {
+    this.cognitoAuth.login();
   }
 
 }

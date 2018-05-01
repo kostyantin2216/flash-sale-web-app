@@ -3,9 +3,16 @@
   <div class="page-dialog__container padding-bottom-medium">
 
     <div class="table-cell">
-    <h2 class="heading-secondary margin-bottom-medium">
+    <h2 class="heading-secondary margin-bottom-small">
       Register
     </h2>
+
+    <button class="btn btn--blue btn--fullblock margin-bottom-small" (click)="loginWithFacebook()"><fa name="facebook-square" size="lg" class="margin-right-tiny"></fa>Register With Facebook</button>
+
+    <div class="divider margin-bottom-small">
+        OR
+    </div> 
+
     <form class="form" [formGroup]="registerForm" (ngSubmit)="performRegistration()">
       <div class="row">
         <div class="col-1-of-2">

@@ -1,3 +1,4 @@
+import { CognitoAuthService } from './service/cognito-auth.service';
 import { ProductService } from './service/product.service';
 import { environment } from './../environments/environment';
 import { NotAuthGuard } from './public/auth/not-auth.guard';
@@ -43,6 +44,7 @@ import { ShopEffects } from './public/shop/store/shop.effects';
     })
   ],
   providers: [
+    CognitoAuthService,
     CognitoService,
     UserRegistrationService,
     UserLoginService,
