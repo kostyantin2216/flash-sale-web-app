@@ -1,6 +1,6 @@
 import { Store, select } from '@ngrx/store';
 import { AppState } from './../../../store/app.reducers';
-import { SummarizedProduct } from './../../../service/product.service';
+import { SummarizedProduct, ProductCollections } from './../../../service/product.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, OnInit } from '@angular/core';
 
@@ -11,15 +11,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ProductListComponent implements OnInit {
 
-  products$: Observable<SummarizedProduct[]>;
+  sections = Object.keys(new ProductCollections());
 
-  constructor(
-    private store: Store<AppState>
-  ) { }
+  constructor() { }
 
-  ngOnInit() {
-    this.products$ = this.store.pipe(select(state => state.shop.products));
-  }
+  ngOnInit() { }
 
   productSelected(product) {
     console.log(JSON.stringify(product));

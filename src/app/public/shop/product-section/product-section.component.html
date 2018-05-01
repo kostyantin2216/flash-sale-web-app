@@ -1,0 +1,5 @@
+<div class="product-section">
+    <div class="product-section__product-wrapper" *ngFor="let product of products$ | async" >
+      <app-product [product]="product" (click)="selectProduct(product)"></app-product>
+    </div>
+  </div>

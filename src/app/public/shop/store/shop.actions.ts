@@ -1,3 +1,4 @@
+import { ProductCollections } from './../../../service/product.service';
 import { Action } from "@ngrx/store";
 import { SummarizedProduct } from "../../../service/product.service";
 
@@ -21,7 +22,7 @@ export class SetProducts implements Action {
     readonly type = SET_PRODUCTS;
 
     constructor(
-        public payload: SummarizedProduct[]
+        public payload: ProductCollections
     ) { }
 }
 

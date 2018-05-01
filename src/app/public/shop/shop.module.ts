@@ -10,6 +10,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ShopComponent } from './shop.component';
 import { BrowserModule } from '@angular/platform-browser';
+import { ProductSectionComponent } from './product-section/product-section.component';
 
 @NgModule({
     declarations: [
@@ -19,7 +20,8 @@ import { BrowserModule } from '@angular/platform-browser';
         ProductComponent,
         ProductDetailsComponent,
         CartComponent,
-        FooterComponent
+        FooterComponent,
+        ProductSectionComponent
     ],
     imports: [
         BrowserModule,

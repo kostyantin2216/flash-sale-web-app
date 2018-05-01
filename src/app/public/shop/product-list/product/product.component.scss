@@ -37,8 +37,7 @@
 
         &--name {
             font-size: $medium-font-size;
-            margin-bottom: .5rem;
-            margin-right: 3.3rem;
+            margin-bottom: 1rem;
         }
 
         &--retail-price {
@@ -51,10 +50,10 @@
 
         &--saved {
             position: absolute;
-            top: 0;
+            bottom: 0;
             right: 0;
             text-align: center;
-            padding: 1rem;
+            padding: .7rem;
             background: rgba($color-primary, .5);
 
             &-label {
