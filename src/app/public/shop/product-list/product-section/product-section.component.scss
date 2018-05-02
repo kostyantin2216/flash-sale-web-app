@@ -1,22 +1,15 @@
 @import "~sass/abstract/variables";
 
-.product-list {
-    margin: 0 7rem;
-    position: relative;
-
-    &__section-header {
-        background: $color-white;
+.product-section {
+    margin-bottom: $margin-medium;
+    
+    &__title {
         text-align: center;
-        padding-top: .5rem;
-        position: fixed;
-        top: $margin-medium;
-        left: 7rem;
-        right: 7rem;
-        z-index: 5;
+        padding: .5rem;
+        margin: 0 7rem;
 
         h2 {
             font-weight: 600;
-            transition: all .2s;
         }
 
         span {
@@ -27,13 +20,19 @@
             border-radius: 1rem;
             position: relative;
             top: -.5rem;
-            transition: all .2s;
         }
         
         cursor: pointer;
+        transition: all .2s;
 
-        &:hover > span, &:hover > h2 {
+        &:hover {
             transform: rotate(2deg) scale(1.2);
         }
     }
+
+    &__product-wrapper {
+        width: 25%;
+        display: inline-block;
+    }
+
 }

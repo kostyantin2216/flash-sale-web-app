@@ -34,6 +34,10 @@ export class NotAuthGuard implements CanActivate {
             return this.loginService.isAuthenticated().map((isAuthenticated: boolean) => !isAuthenticated);
           }
         })
+        .catch(() => {
+          this.cognitoService.refresh();
+          return Observable.of(true);
+        })
         .do((canActivate: boolean) => {
           if (!canActivate) {
             this.router.navigate(['/']);

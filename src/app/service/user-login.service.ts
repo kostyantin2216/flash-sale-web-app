@@ -147,7 +147,7 @@ export class UserLoginService {
           return Observable.create((observer: Observer<boolean>) => {
               cognitoUser.getSession(function (err, session) {
                   if (err) {
-                      console.log("UserLoginService: Couldn't get the session: " + err, err.stack);
+                      console.log("UserLoginService: Couldn't get the session: " + err.message, err.stack);
                       observer.error(err);
                   }
                   else {

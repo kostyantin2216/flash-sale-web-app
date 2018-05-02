@@ -4,7 +4,7 @@ import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
 import { UserRegistrationService } from './../../../service/user-registration.service';
 import { Component } from '@angular/core';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CustomValidators } from '../../../shared/custom-validators.utility';
 
 export class RegistrationUser {
@@ -91,7 +91,7 @@ export class RegisterComponent {
     this.authService.login();
   }
 
-  isInvalid(cntrl: FormControl) {
+  isInvalid(cntrl: AbstractControl) {
     return cntrl.invalid && (cntrl.dirty || cntrl.touched || this.submitted);
   }
 

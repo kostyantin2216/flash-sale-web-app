@@ -1,0 +1,23 @@
+.product-details {
+    margin: 0 6rem 0 6rem;
+
+    &__top {
+        display: table;
+        position: relative;
+
+        &--left {
+            position: absolute;
+            display: table-cell;
+            width: 55%;
+        }
+        &--right {
+            display: table-cell;
+            width: 42%;
+        }
+    }
+
+    &__image-gallery {
+        z-index: 10;
+    }
+
+}

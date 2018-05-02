@@ -11,22 +11,7 @@ export class ShopEffects {
         .ofType(ShopActions.LOAD_PRODUCTS)
         .switchMap((action: ShopActions.LoadProducts) =>  this.productService.fetchAllProducts())
         .map((products: SummarizedProduct[]) => {
-            const collections = new ProductCollections();
-
-            products.sort(productPriceComparator);
-
-            products.forEach(product => {
-                if (product.price <= 100) {
-                    collections.under100.content.push(product);
-                } else if (product.price <= 400) {
-                    collections.under400.content.push(product);
-                } else if (product.price <= 1000) {
-                    collections.under1000.content.push(product);
-                } else {
-                    collections.over1000.content.push(product);
-                }
-            });
-
+            const collections = new ProductCollections(products);
             return {
                 type: ShopActions.SET_PRODUCTS,
                 payload: collections

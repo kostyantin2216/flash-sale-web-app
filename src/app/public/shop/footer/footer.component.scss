@@ -1,0 +1,34 @@
+@import "~sass/abstract/variables";
+
+.footer {
+    background-color: $color-grey-light-2;
+    border-top: 1px solid $color-grey-dark-2;
+    text-align: center;
+
+    &__sections {
+        list-style: none;
+
+        li {
+            display: inline-block;
+            margin: 2rem;
+            margin-bottom: 0;
+        }
+    }
+
+    &__link {
+        text-decoration: none;
+        color: $color-grey-dark-3;
+        display: inline-block;
+        cursor: pointer;
+        transition: all .2s;
+
+        &:hover {
+            transform: rotate(15deg) scale(1.2);
+        }
+    }
+
+    &__logo {
+        width: 30%;
+        margin: 2rem; 
+    }
+}

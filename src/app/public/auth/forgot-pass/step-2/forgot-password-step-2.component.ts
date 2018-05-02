@@ -1,4 +1,4 @@
-import { FormBuilder, FormGroup, Validators, FormControl } from '@angular/forms';
+import { FormBuilder, FormGroup, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { UserLoginService } from './../../../../service/user-login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { Router, ActivatedRoute, Params } from '@angular/router';
@@ -77,7 +77,7 @@ export class ForgotPasswordStep2Component implements OnInit, OnDestroy {
         }
     }
 
-    isInvalid(cntrl: FormControl) {
+    isInvalid(cntrl: AbstractControl) {
         return cntrl.invalid && (cntrl.dirty || cntrl.touched || this.submitted);
     }
 

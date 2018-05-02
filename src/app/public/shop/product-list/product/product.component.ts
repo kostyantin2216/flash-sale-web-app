@@ -17,7 +17,6 @@ export class ProductComponent implements OnInit {
 
   ngOnInit() {
     this.percentageSaved = this.productService.calculateSavingsPercentage(this.product.price, this.product.retailPrice);
-    console.log(this.percentageSaved);
   }
 
 }

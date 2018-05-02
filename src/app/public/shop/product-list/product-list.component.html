@@ -1,5 +1,9 @@
 <div class="product-list">
-  <div class="product-list__product-wrapper" *ngFor="let product of products$ | async" >
-    <app-product [product]="product" (click)="productSelected(product)"></app-product>
+  <div class="product-list__section-header" *ngIf="currentSectionName != null" [ngx-scroll-to]="'#section' + currentSectionName">
+    <h2 >{{ currentSectionTitle }}</h2>
+    <span></span>
+  </div>
+  <div class="product-list__product-wrapper" *ngFor="let section of sections" id="section{{ section }}" >
+    <app-product-section [name]="section" (productSelected)="productSelected($event)" (sectionPosition)="sectionPosition($event)"></app-product-section>
   </div>
 </div>

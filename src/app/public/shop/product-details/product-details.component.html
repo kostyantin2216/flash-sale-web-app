@@ -1,3 +1,42 @@
-<p>
-  product-details works!
-</p>
+<div class="product-details">
+  <div class="product-details__top">
+    <div class="product-details__top--left">
+        <ngx-image-gallery 
+        class="product-details__image-gallery"
+        [images]="images" 
+        [conf]="galleryConf"
+        ></ngx-image-gallery>
+    </div>
+    <div class="product-details__top--right">
+      <h1 class="product-details__brand">Light Room</h1>
+      <h2 class="product-details__name">Mini Portable Photo Studio Light Box</h2>
+
+      <div class="product-details__price-info">
+        <div class="product-details__price">R199</div>
+        <div class="product-details__retail-price">Retail: R300</div>
+
+        <div class="product-details__shipping-status">Excludes shipping</div>
+      </div>
+
+      <div class="product-details__variants">
+        <div class="product-details__variant">Select size</div>
+        <div class="product-details__quantity">Quantity: 1</div>
+      </div>
+
+      <button class="btn btn--green">I want one!</button>
+
+      <ul class="product-details__tags">
+        <li class="product-details__tag">Portable</li>
+        <li class="product-details__tag">Easy to use</li>
+        <li class="product-details__tag">Perfect for small reflecting items like jewlery!</li>
+        <li class="product-details__tag">Look professional!</li>
+        <li class="product-details__tag">Easy to store</li>
+      </ul>
+
+      <ul class="product-details__social">
+        <li class="product-details__share product-details__share--email"><fa name="envelope"></fa></li>
+        <li class="product-details__share product-details__share--facebook"><fa name="facebook"></fa></li>
+      </ul>
+    </div>
+  </div>
+</div>

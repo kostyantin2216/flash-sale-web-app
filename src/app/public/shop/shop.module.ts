@@ -1,6 +1,8 @@
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ShopRoutingModule } from './shop-routing.module';
 import { NgModule } from '@angular/core';
+import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
+import { NgxImageGalleryModule } from 'ngx-image-gallery';
 
 import { FooterComponent } from './footer/footer.component';
 import { CartComponent } from './cart/cart.component';
@@ -10,7 +12,7 @@ import { ProductListComponent } from './product-list/product-list.component';
 import { ToolbarComponent } from './toolbar/toolbar.component';
 import { ShopComponent } from './shop.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { ProductSectionComponent } from './product-section/product-section.component';
+import { ProductSectionComponent } from './product-list/product-section/product-section.component';
 
 @NgModule({
     declarations: [
@@ -26,7 +28,9 @@ import { ProductSectionComponent } from './product-section/product-section.compo
     imports: [
         BrowserModule,
         ShopRoutingModule,
-        AngularFontAwesomeModule
+        AngularFontAwesomeModule,
+        ScrollToModule.forRoot(),
+        NgxImageGalleryModule
     ]
 })
 export class ShopModule { }

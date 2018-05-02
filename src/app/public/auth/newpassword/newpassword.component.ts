@@ -1,7 +1,7 @@
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs/Subscription';
 import { CustomValidators } from './../../../shared/custom-validators.utility';
-import { FormGroup, FormBuilder, Validators, FormControl } from '@angular/forms';
+import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
 import { UserLoginService, AuthenticationResult } from './../../../service/user-login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
@@ -97,7 +97,7 @@ export class NewpasswordComponent implements OnInit, OnDestroy {
     }
   }
 
-  isInvalid(cntrl: FormControl) {
+  isInvalid(cntrl: AbstractControl) {
     return cntrl.invalid && (cntrl.dirty || cntrl.touched || this.submitted);
   }
 

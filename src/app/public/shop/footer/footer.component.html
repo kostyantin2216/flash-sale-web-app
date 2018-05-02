@@ -1,3 +1,8 @@
-<p>
-  footer works!
-</p>
+<div class="footer">
+  <ul class="footer__sections">
+    <li *ngFor="let section of sections">
+      <a [routerLink]="['/shop']" [fragment]="'section' + section.name" class="footer__link">{{ section.title }}</a>
+    </li>
+  </ul>
+  <img class="footer__logo" src="../../../../assets/images/flashsaleslogo.png" />
+</div>

@@ -1,15 +1,27 @@
-import { Component, OnInit } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { Component, OnInit, OnDestroy } from '@angular/core';
+import { ProductCollections } from '../../../service/product.service';
+import { Router, ActivatedRoute, UrlSegment } from '@angular/router';
 
 @Component({
   selector: 'app-footer',
   templateUrl: './footer.component.html',
   styleUrls: ['./footer.component.scss']
 })
-export class FooterComponent implements OnInit {
+export class FooterComponent {
 
-  constructor() { }
+  sections: {name: string, title: string}[] = [];
 
-  ngOnInit() {
+  constructor(
+  ) {
+    const collections = new ProductCollections();
+    const sectionKeys = Object.keys(collections);
+    sectionKeys.forEach(section => {
+      this.sections.push({
+        name: section,
+        title: collections[section].title
+      });
+    });
   }
 
 }

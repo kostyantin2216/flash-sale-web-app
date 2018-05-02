@@ -23,12 +23,14 @@ import { AuthEffects } from './public/auth/store/auth.effects';
 import { ShopModule } from './public/shop/shop.module';
 import { reducers } from './store/app.reducers';
 import { ShopEffects } from './public/shop/store/shop.effects';
+import { FixedTitleDirective } from './shared/fixed-title.directive';
 
 
 @NgModule({
   declarations: [
     AppComponent,
-    CheckoutComponent
+    CheckoutComponent,
+    FixedTitleDirective
   ],
   imports: [
     BrowserModule,
