@@ -7,7 +7,7 @@ export interface ShopState {
 }
 
 const INITIAL_STATE: ShopState = {
-    products: null,
+    products: new ProductCollections(),
     productDetails: null
 };
 

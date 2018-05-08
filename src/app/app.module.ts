@@ -1,11 +1,12 @@
+import { LoaderService } from './service/loader.service';
 import { CognitoAuthService } from './service/cognito-auth.service';
 import { ProductService } from './service/product.service';
 import { environment } from './../environments/environment';
 import { NotAuthGuard } from './public/auth/not-auth.guard';
 import { AuthModule } from './public/auth/auth.module';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
-import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { NgModule, forwardRef } from '@angular/core';
+import { FormsModule, ReactiveFormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { StoreModule } from '@ngrx/store';
 import { EffectsModule } from '@ngrx/effects';
@@ -24,6 +25,7 @@ import { ShopModule } from './public/shop/shop.module';
 import { reducers } from './store/app.reducers';
 import { ShopEffects } from './public/shop/store/shop.effects';
 import { FixedTitleDirective } from './shared/fixed-title.directive';
+import { CounterInputComponent } from './shared/counter-input/counter-input.component';
 
 
 @NgModule({
@@ -46,12 +48,18 @@ import { FixedTitleDirective } from './shared/fixed-title.directive';
     })
   ],
   providers: [
+    LoaderService,
     CognitoAuthService,
     CognitoService,
     UserRegistrationService,
     UserLoginService,
     ProductService,
-    NotAuthGuard
+    NotAuthGuard,
+    {
+      provide: NG_VALUE_ACCESSOR,
+      useExisting: forwardRef(() => CounterInputComponent),
+      multi: true
+    }
   ],
   bootstrap: [AppComponent]
 })

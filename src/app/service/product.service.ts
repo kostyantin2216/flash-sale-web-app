@@ -335,7 +335,7 @@ export class ProductService {
                 price: 149,
                 retailPrice: 300
             }
-        ]);
+        ]).delay(5000);
     }
 
     calculateSavingsPercentage(price: number, retailPrice: number): number {

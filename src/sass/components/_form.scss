@@ -14,6 +14,10 @@
         font-size: $default-font-size;
         display: block;
         padding-left: .1rem;
+
+        &--inline {
+            display: inline-block;
+        }
     }
 
     &__error {

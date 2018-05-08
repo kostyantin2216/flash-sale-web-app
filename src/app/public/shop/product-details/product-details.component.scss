@@ -1,9 +1,12 @@
+@import "~sass/abstract/variables";
+
 .product-details {
     margin: 0 6rem 0 6rem;
 
     &__top {
         display: table;
         position: relative;
+        min-height: 500px;
 
         &--left {
             position: absolute;
@@ -18,6 +21,71 @@
 
     &__image-gallery {
         z-index: 10;
+    }
+
+    &__name {
+        font-weight: 300;
+        font-size: $large-font-size;
+        margin-bottom: $margin-medium;
+    }
+
+    &__price-info {
+        margin-bottom: $margin-medium;
+    }
+
+    &__price {
+        font-size: $xxx-large-font-size;
+        font-weight: 600;
+        color: $color-secondary-dark;
+    }
+
+    &__retail-price {
+        font-size: $medium-font-size;
+        color: $color-secondary-dark;
+    }
+
+    &__quantity {
+        display: inline-block;
+    }
+
+    &__tags {
+        margin-top: 1rem;
+        list-style: none;
+    }
+
+    &__tag {
+        background-color: $color-tertiary-dark;
+        color: $color-white;
+        display: inline-block;
+        font-size: $small-font-size;
+        padding: .2rem;
+    }
+
+    &__social {
+        list-style: none;
+        margin-top: 1rem;
+        margin-bottom: 1rem;
+    }
+
+    &__share,
+    &__share:link 
+    &__share:visited {
+        color: white;
+        display: inline-block;
+        width: 3rem;
+        height: 3rem;
+        border-radius: 10rem;
+        text-align: center;
+        padding-top: .5rem;
+    }
+
+    &__share {
+        &--email {
+            background-color: $color-secondary-light;
+        }
+        &--facebook {
+            background-color: $color-blue;
+        }
     }
 
 }

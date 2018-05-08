@@ -1,9 +1,11 @@
-<div class="product-section" *ngIf="(products$ | async).content.length > 0">
-  <div class="product-section__title" [ngx-scroll-to]="'#section' + name">
-    <h2>{{ (products$ | async).title }}</h2>
-    <span></span>
-  </div>
-  <div class="product-section__product-wrapper" *ngFor="let product of (products$ | async).content" >
-    <app-product [product]="product" (click)="selectProduct(product)"></app-product>
+<div class="product-section" >
+  <div class="product-section__container" *ngIf="(products$ | async) && (products$ | async).content.length > 0">
+    <div class="product-section__title" [ngx-scroll-to]="'#section' + name">
+      <h2>{{ (products$ | async).title }}</h2>
+      <span></span>
+    </div>
+    <div class="product-section__product-wrapper" *ngFor="let product of (products$ | async).content" >
+      <app-product [product]="product" (click)="selectProduct(product)"></app-product>
+    </div>
   </div>
 </div>

@@ -1,3 +1,6 @@
+import { SharedModule } from './../../shared/shared.module';
+import { CommonModule } from '@angular/common';
+import { FormsModule } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ShopRoutingModule } from './shop-routing.module';
 import { NgModule } from '@angular/core';
@@ -26,11 +29,13 @@ import { ProductSectionComponent } from './product-list/product-section/product-
         ProductSectionComponent
     ],
     imports: [
-        BrowserModule,
+        CommonModule,
+        FormsModule,
         ShopRoutingModule,
         AngularFontAwesomeModule,
         ScrollToModule.forRoot(),
-        NgxImageGalleryModule
+        NgxImageGalleryModule,
+        SharedModule
     ]
 })
 export class ShopModule { }
