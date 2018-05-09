@@ -1,14 +1,25 @@
-import { Component, OnInit, ViewChild } from '@angular/core';
+import { Subscription } from 'rxjs/Subscription';
+import { ActivatedRoute, Params } from '@angular/router';
+import { Observable } from 'rxjs/Observable';
+import { Component, OnInit, ViewChild, OnDestroy } from '@angular/core';
 import { NgxImageGalleryComponent, GALLERY_CONF, GALLERY_IMAGE } from 'ngx-image-gallery';
+import { S3Service } from '../../../service/s3.service';
+import { AppState } from '../../../store/app.reducers';
+import { Store, select } from '@ngrx/store';
+import { TOGGLE_LOADER, LOAD_PRODUCT_DETAILS } from '../store/shop.actions';
+import { DetailedProduct } from '../../../service/product.service';
 
 @Component({
   selector: 'app-product-details',
   templateUrl: './product-details.component.html',
   styleUrls: ['./product-details.component.scss']
 })
-export class ProductDetailsComponent implements OnInit {
+export class ProductDetailsComponent implements OnInit, OnDestroy {
 
   // https://www.onedayonly.co.za/light-room-mini-portable-photo-studio-light-box-3.html
+
+  productDetails$: Observable<DetailedProduct>;
+  desciptionBody$: Observable<string>;
 
   @ViewChild(NgxImageGalleryComponent) ngxImageGallery: NgxImageGalleryComponent;
 
@@ -20,36 +31,20 @@ export class ProductDetailsComponent implements OnInit {
     inline: true
   };
 
-  images: GALLERY_IMAGE[] = [
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_6006_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_6006_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    },
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5997_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5997_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    },
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_6008_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_6008_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    },
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5995_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5995_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    },
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5993_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5993_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    },
-    {
-      url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5994_5_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
-      thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5994_5_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
-    }
-  ];
-
-  constructor() { }
+  constructor(
+    private s3Service: S3Service,
+    private store: Store<AppState>,
+    private route: ActivatedRoute
+  ) { }
 
   ngOnInit() {
+    this.productDetails$ = this.store.pipe(select(state => state.shop.productDetails));
+    this.productDetails$.take(1).subscribe((details: DetailedProduct) => {
+      this.desciptionBody$ = this.s3Service.fetchProductDescription(details.description);
+    });
+  }
+
+  ngOnDestroy() {
   }
 
 }

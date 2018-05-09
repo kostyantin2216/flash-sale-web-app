@@ -1,7 +1,8 @@
 <app-toolbar></app-toolbar>
 
 <div class="home">
-    <router-outlet></router-outlet>
+    <router-outlet *ngIf="!(showingLoader$ | async)"></router-outlet>
+    <app-loader *ngIf="(showingLoader$ | async)"></app-loader>
 
     <app-footer></app-footer>
 </div>

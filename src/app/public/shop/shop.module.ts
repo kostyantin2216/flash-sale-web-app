@@ -1,9 +1,10 @@
+import { CounterInputComponent } from './../../shared/counter-input/counter-input.component';
 import { SharedModule } from './../../shared/shared.module';
 import { CommonModule } from '@angular/common';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, NG_VALUE_ACCESSOR } from '@angular/forms';
 import { AngularFontAwesomeModule } from 'angular-font-awesome';
 import { ShopRoutingModule } from './shop-routing.module';
-import { NgModule } from '@angular/core';
+import { NgModule, forwardRef } from '@angular/core';
 import { ScrollToModule } from '@nicky-lenaers/ngx-scroll-to';
 import { NgxImageGalleryModule } from 'ngx-image-gallery';
 
@@ -36,6 +37,13 @@ import { ProductSectionComponent } from './product-list/product-section/product-
         ScrollToModule.forRoot(),
         NgxImageGalleryModule,
         SharedModule
+    ],
+    providers: [
+        {
+            provide: NG_VALUE_ACCESSOR,
+            useExisting: forwardRef(() => CounterInputComponent),
+            multi: true
+        }
     ]
 })
 export class ShopModule { }

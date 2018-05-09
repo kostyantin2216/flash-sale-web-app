@@ -3,19 +3,20 @@
     <div class="product-details__top--left">
         <ngx-image-gallery 
         class="product-details__image-gallery"
-        [images]="images" 
+        [images]="(productDetails$ | async).images" 
         [conf]="galleryConf"
         ></ngx-image-gallery>
     </div>
     <div class="product-details__top--right">
-      <h1 class="product-details__brand">Light Room</h1>
-      <h2 class="product-details__name">Mini Portable Photo Studio Light Box</h2>
+      <h1 class="product-details__brand">{{ (productDetails$ | async).brand }}</h1>
+      <h2 class="product-details__name">{{ (productDetails$ | async).name }}</h2>
 
       <div class="product-details__price-info">
-        <div class="product-details__retail-price">Retail: R300</div>
-        <div class="product-details__price">R199</div>
+        <div class="product-details__retail-price">Retail: R{{ (productDetails$ | async).retailPrice }}</div>
+        <div class="product-details__price">R{{ (productDetails$ | async).price }}</div>
 
-        <div class="product-details__shipping-status">Excludes shipping</div>
+        <div class="product-details__shipping-status" *ngIf="(productDetails$ | async).shippingPrice">Excludes shipping</div>
+        <div class="product-details__shipping-status" *ngIf="!(productDetails$ | async).shippingPrice">Includes shipping</div>
       </div>
 
       <form class="form" #f="ngForm">
@@ -25,24 +26,27 @@
 
         <div class="form__group">
           <label for="quantity" class="form__label--inline">Quantity</label>
-          <app-counter-input class="product-details__quantity" id="quantity" name="counter" ngModel></app-counter-input>
+          <app-counter-input class="product-details__quantity" id="quantity"></app-counter-input>
         </div>
 
         <button class="btn btn--green margin-top-small">I want it!</button>
       </form>
 
       <ul class="product-details__tags">
-        <li class="product-details__tag">Portable</li>
-        <li class="product-details__tag">Easy to use</li>
-        <li class="product-details__tag">Perfect for small reflecting items like jewlery!</li>
-        <li class="product-details__tag">Look professional!</li>
-        <li class="product-details__tag">Easy to store</li>
+        <li class="product-details__tag" *ngFor="let feature of (productDetails$ | async).features">{{ feature }}</li>
       </ul>
 
       <ul class="product-details__social">
-        <li class="product-details__share product-details__share--email"><fa name="envelope" size="lg"></fa></li>
-        <li class="product-details__share product-details__share--facebook"><fa name="facebook" size="lg"></fa></li>
+        <li><a class="product-details__share product-details__share--email" href="#"><fa name="envelope" size="lg"></fa></a></li>
+        <li><a class="product-details__share product-details__share--facebook" href="#"><fa name="facebook" size="lg"></fa></a></li>
       </ul>
     </div>
+  </div>
+
+  <hr />
+
+  <div class="product-details__bottom">
+    <div *ngIf="(desciptionBody$ | async)" class="product-details__description" [innerHTML]="desciptionBody$ | async" ></div>
+    <app-loader *ngIf="!(desciptionBody$ | async)"></app-loader>
   </div>
 </div>

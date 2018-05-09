@@ -3,35 +3,23 @@ import { Subscription } from 'rxjs/Subscription';
 import { LOAD_PRODUCTS } from './store/shop.actions';
 import { AppState } from './../../store/app.reducers';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { Store } from '@ngrx/store';
-import { LoaderService, LoaderState } from '../../service/loader.service';
+import { Store, select } from '@ngrx/store';
 
 @Component({
   selector: 'app-shop',
   templateUrl: './shop.component.html',
   styleUrls: ['./shop.component.scss']
 })
-export class ShopComponent implements OnInit, OnDestroy {
+export class ShopComponent implements OnInit {
 
-  private loaderSub: Subscription;
-
-  showLoader = false;
+  showingLoader$: Observable<boolean>;
 
   constructor(
-    private store: Store<AppState>,
-    private loaderService: LoaderService
+    private store: Store<AppState>
   ) { }
 
   ngOnInit() {
-    this.store.dispatch({ type: LOAD_PRODUCTS });
-    this.loaderSub = this.loaderService.loaderState$.subscribe((state: LoaderState) => {
-      this.showLoader = state === LoaderState.SHOWN;
-      console.log(state);
-    });
-  }
-
-  ngOnDestroy() {
-    this.loaderSub.unsubscribe();
+    this.showingLoader$ = this.store.pipe(select(state => state.shop.showingLoader));
   }
 
 }

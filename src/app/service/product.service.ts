@@ -12,6 +12,17 @@ export interface SummarizedProduct {
     retailPrice: number;
 }
 
+export interface DetailedProduct {
+    name: string;
+    brand: string;
+    images: {url: string, thumbnailUrl: string}[];
+    price: number;
+    retailPrice: number;
+    features: string[];
+    description: string;
+    shippingPrice: number;
+}
+
 export interface ProductCollection {
     title: string;
     content: SummarizedProduct[];
@@ -61,6 +72,16 @@ export class ProductCollections {
                 this[collections[index]].content.push(product);
             }
         });
+    }
+
+    isEmpty() {
+        const collections = Object.keys(this);
+        for (let i = 0; i < collections.length; i++) {
+            if (this[collections[i]].content.length > 0) {
+                return false;
+            }
+        }
+        return true;
     }
 }
 
@@ -335,7 +356,51 @@ export class ProductService {
                 price: 149,
                 retailPrice: 300
             }
-        ]).delay(5000);
+        ]).delay(500);
+    }
+
+    fetchProductDetails(category: string, name: string): Observable<DetailedProduct> {
+        return Observable.of({
+            name: 'Q7 Assorted Karaoke Mic With Bluetooth Speaker',
+            brand: 'Maxxlite',
+            images: [
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_6006_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_6006_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                },
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5997_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5997_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                },
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_6008_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_6008_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                },
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5995_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5995_3_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                },
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5993_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5993_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                },
+                {
+                    url: 'https://odo.imgix.net/media/catalog/product/i/m/img_5994_5_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=1000&or=0&w=1000',
+                    thumbnailUrl: 'https://odo.imgix.net/media/catalog/product/i/m/img_5994_5_1_1.jpg?auto=compress%2Cformat&bg=fff&fit=fillmax&h=200&or=0&w=200'
+                }
+            ],
+            price: 199,
+            retailPrice: 300,
+            features: [
+                'Portable',
+                'Easy to use',
+                'Perfect for small reflecting items like jewlery!',
+                'Look professional!',
+                'Easy to store'
+            ],
+            description: 'exampledesc.html',
+            shippingPrice: 6
+        }).delay(500);
     }
 
     calculateSavingsPercentage(price: number, retailPrice: number): number {

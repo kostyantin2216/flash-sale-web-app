@@ -1,14 +1,16 @@
-import { SummarizedProduct, ProductCollections } from './../../../service/product.service';
+import { SummarizedProduct, ProductCollections, DetailedProduct } from './../../../service/product.service';
 import * as ShopActions from "./shop.actions";
 
 export interface ShopState {
     products: ProductCollections;
-    productDetails: any;
+    productDetails: DetailedProduct;
+    showingLoader: boolean;
 }
 
 const INITIAL_STATE: ShopState = {
     products: new ProductCollections(),
-    productDetails: null
+    productDetails: null,
+    showingLoader: true
 };
 
 export function shopReducer(state = INITIAL_STATE, action: ShopActions.ShopActions): ShopState {
@@ -17,6 +19,17 @@ export function shopReducer(state = INITIAL_STATE, action: ShopActions.ShopActio
             return {
                 ...state,
                 products: action.payload
+            };
+        case ShopActions.SET_PRODUCT_DETAILS:
+            return {
+                ...state,
+                productDetails: action.payload
+            };
+        case ShopActions.TOGGLE_LOADER:
+            let showLoader = action.payload === undefined || action.payload === null ? !state.showingLoader : action.payload;
+            return {
+                ...state,
+                showingLoader: showLoader
             };
         default:
             return state;

@@ -1,3 +1,13 @@
 .home {
     padding-top: 2rem;
 }
+
+app-loader {
+    height: calc(75vh - 2rem);
+    padding-top: 33vh;
+    display: block;
+}
+
+app-footer {
+    height: 25vh;
+}

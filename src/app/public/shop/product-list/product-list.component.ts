@@ -1,7 +1,5 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { Store, select } from '@ngrx/store';
-import { AppState } from './../../../store/app.reducers';
 import { SummarizedProduct, ProductCollections } from './../../../service/product.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, ElementRef, HostListener, OnInit, OnDestroy } from '@angular/core';

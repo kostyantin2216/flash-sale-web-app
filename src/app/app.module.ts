@@ -1,4 +1,5 @@
-import { LoaderService } from './service/loader.service';
+import { ProductDetailsGuard } from './public/shop/product-details/product-details.guard';
+import { S3Service } from './service/s3.service';
 import { CognitoAuthService } from './service/cognito-auth.service';
 import { ProductService } from './service/product.service';
 import { environment } from './../environments/environment';
@@ -26,6 +27,7 @@ import { reducers } from './store/app.reducers';
 import { ShopEffects } from './public/shop/store/shop.effects';
 import { FixedTitleDirective } from './shared/fixed-title.directive';
 import { CounterInputComponent } from './shared/counter-input/counter-input.component';
+import { ProductListGuard } from './public/shop/product-list/product-list.guard';
 
 
 @NgModule({
@@ -48,18 +50,15 @@ import { CounterInputComponent } from './shared/counter-input/counter-input.comp
     })
   ],
   providers: [
-    LoaderService,
     CognitoAuthService,
     CognitoService,
     UserRegistrationService,
     UserLoginService,
     ProductService,
+    S3Service,
     NotAuthGuard,
-    {
-      provide: NG_VALUE_ACCESSOR,
-      useExisting: forwardRef(() => CounterInputComponent),
-      multi: true
-    }
+    ProductListGuard,
+    ProductDetailsGuard
   ],
   bootstrap: [AppComponent]
 })
