@@ -3,7 +3,7 @@ import { AppState } from './../../../store/app.reducers';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';
 import { Injectable } from '@angular/core';
 import { Store, select } from '@ngrx/store';
-import { ProductCollections } from '../../../service/product.service';
+import { ProductCollections } from '../../../service/product/product-collections.model';
 
 @Injectable()
 export class ProductListGuard implements CanActivate {

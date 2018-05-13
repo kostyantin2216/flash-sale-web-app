@@ -1,5 +1,6 @@
+import { ProductCollection } from './../../../../service/product/product-collection.model';
+import { SummarizedProduct } from './../../../../service/product/summarized-product.model';
 import { Observable } from 'rxjs/Observable';
-import { SummarizedProduct, ProductCollection } from './../../../../service/product.service';
 import { Component, OnInit, Input, Output, EventEmitter, ElementRef, HostListener } from '@angular/core';
 import { AppState } from '../../../../store/app.reducers';
 import { Store, select } from '@ngrx/store';

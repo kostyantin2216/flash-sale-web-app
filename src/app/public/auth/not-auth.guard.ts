@@ -2,14 +2,14 @@ import { AppState } from './../../store/app.reducers';
 import { LOGIN } from './store/auth.actions';
 import { Observer } from 'rxjs/Observer';
 import { CognitoUser } from 'amazon-cognito-identity-js';
-import { UserLoginService } from './../../service/user-login.service';
+import { UserLoginService } from './../../service/user/user-login.service';
 import { Observable } from 'rxjs/Observable';
 import { Injectable } from '@angular/core';
 import { AuthState } from './store/auth.reducers';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot, Router } from '@angular/router';
 import { Store } from '@ngrx/store';
 import { isatty } from 'tty';
-import { CognitoService } from '../../service/cognito.service';
+import { CognitoService } from '../../service/aws/cognito.service';
 
 /**
  * We only activate if we are NOT authenticated

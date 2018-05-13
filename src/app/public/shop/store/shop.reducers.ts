@@ -1,4 +1,5 @@
-import { SummarizedProduct, ProductCollections, DetailedProduct } from './../../../service/product.service';
+import { DetailedProduct } from './../../../service/product/detailed-product.model';
+import { ProductCollections } from './../../../service/product/product-collections.model';
 import * as ShopActions from "./shop.actions";
 
 export interface ShopState {

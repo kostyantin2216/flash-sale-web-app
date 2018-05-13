@@ -3,9 +3,9 @@ import { Subscription } from 'rxjs/Subscription';
 import { CustomValidators } from './../../../shared/custom-validators.utility';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UserLoginService, AuthenticationResult } from './../../../service/user-login.service';
+import { UserLoginService, AuthenticationResult } from './../../../service/user/user-login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
-import { UserRegistrationService } from '../../../service/user-registration.service';
+import { UserRegistrationService } from '../../../service/user/user-registration.service';
 
 export class NewPasswordUser {
   constructor(

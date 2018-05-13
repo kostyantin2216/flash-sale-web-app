@@ -1,9 +1,9 @@
 import { Observer } from 'rxjs/Observer';
 import { Observable } from 'rxjs/Observable';
-import { NewPasswordUser } from './../public/auth/newpassword/newpassword.component';
-import { RegistrationUser } from './../public/auth/register/register.component';
+import { NewPasswordUser } from './../../public/auth/newpassword/newpassword.component';
+import { RegistrationUser } from './../../public/auth/register/register.component';
 import { Inject, Injectable } from "@angular/core";
-import { CognitoService } from "./cognito.service";
+import { CognitoService } from "../aws/cognito.service";
 import { AuthenticationDetails, CognitoUser, CognitoUserAttribute, ISignUpResult, CognitoUserSession } from "amazon-cognito-identity-js";
 import * as AWS from "aws-sdk/global";
 

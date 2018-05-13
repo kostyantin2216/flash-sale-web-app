@@ -1,4 +1,5 @@
-import { SummarizedProduct, ProductService } from './../../../../service/product.service';
+import { SummarizedProduct } from './../../../../service/product/summarized-product.model';
+import { ProductService } from './../../../../service/product/product.service';
 import { Component, OnInit, Input } from '@angular/core';
 
 @Component({

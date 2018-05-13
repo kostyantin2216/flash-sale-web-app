@@ -1,6 +1,6 @@
-import { ProductCollections, DetailedProduct } from './../../../service/product.service';
+import { ProductCollections } from './../../../service/product/product-collections.model';
+import { DetailedProduct } from './../../../service/product/detailed-product.model';
 import { Action } from "@ngrx/store";
-import { SummarizedProduct } from "../../../service/product.service";
 
 export const LOAD_PRODUCTS = 'LOAD_PRODUCTS';
 export const LOAD_PRODUCT_DETAILS = 'LOAD_PRODUCT_DETAILS';

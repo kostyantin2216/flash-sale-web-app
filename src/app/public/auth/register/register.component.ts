@@ -1,8 +1,8 @@
-import { CognitoAuthService } from './../../../service/cognito-auth.service';
+import { CognitoAuthService } from './../../../service/aws/cognito-auth.service';
 import { ISignUpResult } from 'amazon-cognito-identity-js';
 import { Subscription } from 'rxjs/Subscription';
 import { Router } from '@angular/router';
-import { UserRegistrationService } from './../../../service/user-registration.service';
+import { UserRegistrationService } from './../../../service/user/user-registration.service';
 import { Component } from '@angular/core';
 import { FormGroup, FormBuilder, Validators, FormControl, AbstractControl } from '@angular/forms';
 import { CustomValidators } from '../../../shared/custom-validators.utility';

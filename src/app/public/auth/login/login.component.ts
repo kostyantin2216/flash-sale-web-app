@@ -1,13 +1,13 @@
-import { CognitoAuthService } from './../../../service/cognito-auth.service';
+import { CognitoAuthService } from './../../../service/aws/cognito-auth.service';
 import { LOGIN, LOAD_USER } from './../store/auth.actions';
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import { element } from 'protractor';
 import { Router, ActivatedRoute } from '@angular/router';
-import { UserLoginService, AuthenticationResult } from './../../../service/user-login.service';
+import { UserLoginService, AuthenticationResult } from './../../../service/user/user-login.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 import { NgForm } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { CognitoService } from '../../../service/cognito.service';
+import { CognitoService } from '../../../service/aws/cognito.service';
 import { AppState } from '../../../store/app.reducers';
 import { Subscription } from 'rxjs/Subscription';
 

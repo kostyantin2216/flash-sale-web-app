@@ -1,6 +1,6 @@
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute, Params } from '@angular/router';
-import { UserRegistrationService } from './../../../service/user-registration.service';
+import { UserRegistrationService } from './../../../service/user/user-registration.service';
 import { Component, OnInit, OnDestroy } from '@angular/core';
 
 @Component({

@@ -1,7 +1,7 @@
 import { AppState } from './store/app.reducers';
 import { LOGIN, LOAD_USER } from './public/auth/store/auth.actions';
 import { Component, OnInit } from '@angular/core';
-import { CognitoService } from './service/cognito.service';
+import { CognitoService } from './service/aws/cognito.service';
 import { Store } from '@ngrx/store';
 
 @Component({

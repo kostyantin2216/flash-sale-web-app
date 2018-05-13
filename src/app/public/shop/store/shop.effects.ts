@@ -1,4 +1,7 @@
-import { ProductService, SummarizedProduct, productPriceComparator, ProductCollections, DetailedProduct } from './../../../service/product.service';
+import { DetailedProduct } from './../../../service/product/detailed-product.model';
+import { ProductCollections } from './../../../service/product/product-collections.model';
+import { SummarizedProduct } from './../../../service/product/summarized-product.model';
+import { ProductService } from './../../../service/product/product.service';
 import { Injectable } from '@angular/core';
 import { Actions, Effect } from "@ngrx/effects";
 import * as ShopActions from './shop.actions';

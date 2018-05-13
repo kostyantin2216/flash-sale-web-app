@@ -1,6 +1,6 @@
-import { AppState } from './../store/app.reducers';
-import { environment } from './../../environments/environment';
-import { CognitoService } from './cognito.service';
+import { AppState } from './../../store/app.reducers';
+import { environment } from './../../../environments/environment';
+import { CognitoService } from '../aws/cognito.service';
 import { Injectable } from '@angular/core';
 import { AuthenticationDetails, CognitoUser, CognitoUserSession } from 'amazon-cognito-identity-js';
 import * as AWS from "aws-sdk/global";
@@ -8,7 +8,7 @@ import * as STS from "aws-sdk/clients/sts";
 import { Observable } from 'rxjs/Observable';
 import { Observer } from 'rxjs/Observer';
 import { Store } from '@ngrx/store';
-import { LOAD_USER } from './../public/auth/store/auth.actions';
+import { LOAD_USER } from './../../public/auth/store/auth.actions';
 
 export class AuthenticationResult {
     constructor(

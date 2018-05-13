@@ -1,5 +1,5 @@
 import { Observable } from 'rxjs/Observable';
-import { environment } from './../../environments/environment.prod';
+import { environment } from './../../../environments/environment.prod';
 import { Injectable } from "@angular/core";
 import * as S3 from 'aws-sdk/clients/s3';
 import { Observer } from 'rxjs/Observer';

@@ -1,10 +1,10 @@
-import { LOGIN, LOAD_USER } from './../public/auth/store/auth.actions';
-import { AppState } from './../store/app.reducers';
+import { LOGIN, LOAD_USER } from './../../public/auth/store/auth.actions';
+import { AppState } from './../../store/app.reducers';
 import { Injectable } from '@angular/core';
 import { Router } from '@angular/router';
 
 import { CognitoAuth } from 'amazon-cognito-auth-js/dist/amazon-cognito-auth';
-import { environment } from '../../environments/environment';
+import { environment } from '../../../environments/environment';
 import { CognitoService } from './cognito.service';
 import { Store } from '@ngrx/store';
 

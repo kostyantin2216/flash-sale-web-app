@@ -1,4 +1,4 @@
-import { DetailedProduct } from './../../../service/product.service';
+import { DetailedProduct } from './../../../service/product/detailed-product.model';
 import { TOGGLE_LOADER, LOAD_PRODUCT_DETAILS } from './../store/shop.actions';
 import { AppState } from './../../../store/app.reducers';
 import { CanActivate, ActivatedRouteSnapshot, RouterStateSnapshot } from '@angular/router';

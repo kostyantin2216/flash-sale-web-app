@@ -12,6 +12,8 @@ export const environment = {
   appWebDomain: 'flashsales.auth.eu-west-2.amazoncognito.com',
   facebookAppId: '163186334349121',
 
-  awsaid: 'AKIAJD27HLAC4ARJ3GYQ',
-  awssk: 'kux1jly1mhq3ZTeruZvvTI1vMHfKtM/0BrArIEXx'
+  awsaid: '',
+  awssk: '',
+
+  apihost: 'http://localhost:3000'
 };

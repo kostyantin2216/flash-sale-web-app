@@ -1,6 +1,7 @@
+import { SummarizedProduct } from './../../../service/product/summarized-product.model';
+import { ProductCollections } from './../../../service/product/product-collections.model';
 import { Subscription } from 'rxjs/Subscription';
 import { Router, ActivatedRoute } from '@angular/router';
-import { SummarizedProduct, ProductCollections } from './../../../service/product.service';
 import { Observable } from 'rxjs/Observable';
 import { Component, ElementRef, HostListener, OnInit, OnDestroy } from '@angular/core';
 import { ScrollToService } from '@nicky-lenaers/ngx-scroll-to';
