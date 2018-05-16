@@ -1,7 +1,7 @@
 export interface DetailedProduct {
     name: string;
     brand: string;
-    images: {url: string, thumbnailUrl: string}[];
+    images: string[];
     price: number;
     retailPrice: number;
     features: string[];

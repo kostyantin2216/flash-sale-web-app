@@ -2,9 +2,9 @@
   <div class="product-details__top">
     <div class="product-details__top--left">
         <ngx-image-gallery 
-        class="product-details__image-gallery"
-        [images]="(productDetails$ | async).images" 
-        [conf]="galleryConf"
+          class="product-details__image-gallery"
+          [images]="images" 
+          [conf]="galleryConf"
         ></ngx-image-gallery>
     </div>
     <div class="product-details__top--right">
@@ -46,7 +46,6 @@
   <hr />
 
   <div class="product-details__bottom">
-    <div *ngIf="(desciptionBody$ | async)" class="product-details__description" [innerHTML]="desciptionBody$ | async" ></div>
-    <app-loader *ngIf="!(desciptionBody$ | async)"></app-loader>
+    <div class="product-details__description" [innerHTML]="(productDetails$ | async).description" ></div>
   </div>
 </div>

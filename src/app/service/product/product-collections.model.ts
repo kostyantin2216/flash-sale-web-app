@@ -3,16 +3,16 @@ import { ProductCollection } from './product-collection.model';
 import { productPriceComparator } from './product-price.comparator';
 
 export class ProductCollections {
-    public under100: ProductCollection = {
+    public under300: ProductCollection = {
         title: 'Under 300',
         content: [],
         filter: product => product.price <= 300
     };
 
-    public under400: ProductCollection = {
-        title: 'Under 600',
+    public under500: ProductCollection = {
+        title: 'Under 500',
         content: [],
-        filter: product => product.price <= 600
+        filter: product => product.price <= 500
     };
 
     public under1000: ProductCollection = {
