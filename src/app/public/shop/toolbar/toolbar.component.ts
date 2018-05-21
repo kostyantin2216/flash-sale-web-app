@@ -1,4 +1,4 @@
-import { User } from './../../../shared/user.model';
+import { User } from '../../../service/user/user.model';
 import { Observable } from 'rxjs/Observable';
 import { AuthState } from './../../auth/store/auth.reducers';
 import { Component, OnInit } from '@angular/core';

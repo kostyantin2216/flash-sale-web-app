@@ -27,6 +27,10 @@
     }
 
     &__group {
+        &--inline {
+            display: inline-block;
+        }
+
         &.invalid {
             > .form__label {
                 color: $color-error;

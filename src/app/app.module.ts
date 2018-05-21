@@ -41,7 +41,7 @@ import '../rxjs.imports';
   imports: [
     BrowserModule,
     HttpClientModule,
-    
+
     AuthModule,
     ShopModule,
     AppRoutingModule,

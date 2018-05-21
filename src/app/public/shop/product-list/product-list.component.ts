@@ -32,12 +32,13 @@ export class ProductListComponent implements OnInit, OnDestroy {
 
   ngOnInit() {
     this.fragmentSub = this.route.fragment.subscribe(fragment => {
-      console.log(fragment);
-      setTimeout(() => {
-        this.scrollToService.scrollTo({
-          target: fragment
-        });
-      }, 100);
+      if (fragment) {
+        setTimeout(() => {
+          this.scrollToService.scrollTo({
+            target: fragment
+          });
+        }, 100);
+      }
     });
   }
 

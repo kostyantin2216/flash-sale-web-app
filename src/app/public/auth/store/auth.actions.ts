@@ -1,6 +1,6 @@
 import { CognitoUserSession, CognitoUser } from 'amazon-cognito-identity-js';
 import { Action } from '@ngrx/store';
-import { User } from '../../../shared/user.model';
+import { User } from '../../../service/user/user.model';
 
 export const LOGIN = 'LOGIN';
 export const LOGOUT = 'LOGOUT';

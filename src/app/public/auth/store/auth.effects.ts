@@ -1,4 +1,4 @@
-import { User } from './../../../shared/user.model';
+import { User } from '../../../service/user/user.model';
 import { Observer } from 'rxjs/Observer';
 import { CognitoUser, CognitoUserAttribute } from 'amazon-cognito-identity-js';
 import { Observable } from 'rxjs/Observable';

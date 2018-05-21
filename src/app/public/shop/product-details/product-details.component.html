@@ -19,18 +19,9 @@
         <div class="product-details__shipping-status" *ngIf="!(productDetails$ | async).shippingPrice">Includes shipping</div>
       </div>
 
-      <form class="form" #f="ngForm">
-        <div class="product-details__variants">
-          <div class="product-details__variant">Select size</div>
-        </div>
-
-        <div class="form__group">
-          <label for="quantity" class="form__label--inline">Quantity</label>
-          <app-counter-input class="product-details__quantity" id="quantity"></app-counter-input>
-        </div>
-
-        <button class="btn btn--green margin-top-small">I want it!</button>
-      </form>
+      <app-product-variants *ngIf="(productDetails$ | async).variants" [variantsInput]="(productDetails$ | async).variants"></app-product-variants>
+  
+      <button class="btn btn--green margin-top-small">I want it!</button>
 
       <ul class="product-details__tags">
         <li class="product-details__tag" *ngFor="let feature of (productDetails$ | async).features">{{ feature }}</li>

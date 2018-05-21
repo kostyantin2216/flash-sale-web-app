@@ -7,4 +7,5 @@ export interface DetailedProduct {
     features: string[];
     description: string;
     shippingPrice: number;
+    variants: any;
 }

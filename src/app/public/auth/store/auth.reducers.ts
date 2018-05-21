@@ -1,6 +1,6 @@
 import { CognitoUserSession } from 'amazon-cognito-identity-js';
 import * as AuthActions from './auth.actions';
-import { User } from './../../../shared/user.model';
+import { User } from '../../../service/user/user.model';
 import { ServerlessApplicationRepository } from 'aws-sdk/clients/all';
 
 export interface AuthState {

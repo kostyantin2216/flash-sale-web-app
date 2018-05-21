@@ -15,5 +15,5 @@ export const environment = {
   awsaid: '',
   awssk: '',
 
-  apihost: 'http://localhost:3000'
+  apihost: 'http://ec2-35-176-212-213.eu-west-2.compute.amazonaws.com'
 };

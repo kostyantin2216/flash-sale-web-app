@@ -1,0 +1,13 @@
+<div class="product-variants">
+  <div class="form__group--inline margin-right-medium" *ngIf="variant">
+    <label for="product-variants" class="form__label capitalize">{{ variant.name }}</label>
+    <select id="product-variants" class="form__select" (change)="optionSelected($event.target.value)">
+      <option value="" disabled selected>Select an Option</option>
+      <option *ngFor="let option of variant.options" [value]="option.name" class="capitalize">{{ option.name }} ({{ option.stock }})</option>
+    </select>
+  </div>
+  <div class="form__group form__group--inline" *ngIf="stock">
+    <label for="quantity" class="form__label">Quantity</label>
+    <app-counter-input class="product-details__quantity" id="quantity" [max]="stock"></app-counter-input>
+  </div>
+</div>
