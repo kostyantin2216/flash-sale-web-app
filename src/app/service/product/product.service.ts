@@ -19,11 +19,10 @@ export class ProductService {
 
     fetchAllProducts(): Observable<SummarizedProduct[]> {
         return this.http.get<SummarizedProduct[]>(this.builUrl(''));
-            
     }
 
     fetchProductDetails(brand: string, name: string): Observable<DetailedProduct> {
-        return this.http.get<DetailedProduct>(this.builUrl(`${ brand }/${ name }`))
+        return this.http.get<DetailedProduct>(this.builUrl(`${ brand }/${ name }`));
     }
 
     calculateSavingsPercentage(price: number, retailPrice: number): number {

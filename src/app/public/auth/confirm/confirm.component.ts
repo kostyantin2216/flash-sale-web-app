@@ -29,7 +29,9 @@ export class ConfirmComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.emailSub.unsubscribe();
+    if (this.emailSub) {
+      this.emailSub.unsubscribe();
+    }
   }
 
   processConfirmation(form: NgForm) {

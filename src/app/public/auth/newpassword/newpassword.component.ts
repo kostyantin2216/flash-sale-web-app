@@ -45,7 +45,9 @@ export class NewpasswordComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.emailSub.unsubscribe();
+    if (this.emailSub) {
+      this.emailSub.unsubscribe();
+    }
   }
 
   createForm() {

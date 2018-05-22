@@ -1,3 +1,4 @@
+import { ShoppingCartService } from './service/cart/shopping-cart.service';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, forwardRef } from '@angular/core';
@@ -59,6 +60,7 @@ import '../rxjs.imports';
     UserRegistrationService,
     UserLoginService,
     ProductService,
+    ShoppingCartService,
 //    S3Service,
     NotAuthGuard,
     ProductListGuard,

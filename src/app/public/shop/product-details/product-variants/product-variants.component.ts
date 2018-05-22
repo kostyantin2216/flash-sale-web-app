@@ -1,3 +1,4 @@
+import { ProductVariants } from './../../../../service/product/product-variants.model';
 import { Component, OnInit, Input } from '@angular/core';
 
 class Variant {
@@ -26,7 +27,7 @@ class Option {
 })
 export class ProductVariantsComponent implements OnInit {
 
-  @Input() variantsInput: any;
+  @Input() variantsInput: ProductVariants;
 
   stock: number;
   variant: Variant;

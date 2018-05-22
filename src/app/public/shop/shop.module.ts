@@ -18,6 +18,7 @@ import { ShopComponent } from './shop.component';
 import { BrowserModule } from '@angular/platform-browser';
 import { ProductSectionComponent } from './product-list/product-section/product-section.component';
 import { ProductVariantsComponent } from './product-details/product-variants/product-variants.component';
+import { CartProductComponent } from './cart/cart-product/cart-product.component';
 
 @NgModule({
     declarations: [
@@ -29,7 +30,8 @@ import { ProductVariantsComponent } from './product-details/product-variants/pro
         CartComponent,
         FooterComponent,
         ProductSectionComponent,
-        ProductVariantsComponent
+        ProductVariantsComponent,
+        CartProductComponent
     ],
     imports: [
         CommonModule,

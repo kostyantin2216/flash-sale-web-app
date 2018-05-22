@@ -21,7 +21,7 @@
 
       <app-product-variants *ngIf="(productDetails$ | async).variants" [variantsInput]="(productDetails$ | async).variants"></app-product-variants>
   
-      <button class="btn btn--green margin-top-small">I want it!</button>
+      <button class="btn btn--green margin-top-small" (click)="addToCart()">I want it!</button>
 
       <ul class="product-details__tags">
         <li class="product-details__tag" *ngFor="let feature of (productDetails$ | async).features">{{ feature }}</li>

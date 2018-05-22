@@ -28,7 +28,9 @@ export class ResendCodeComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-      this.emailSub.unsubscribe();
+    if (this.emailSub) {
+        this.emailSub.unsubscribe();
+    }
   }
 
   resendCode() {

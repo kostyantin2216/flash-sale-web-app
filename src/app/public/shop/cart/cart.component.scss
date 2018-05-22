@@ -1,0 +1,38 @@
+@import '~sass/abstract/mixins';
+@import '~sass/abstract/variables';
+
+.shopping-cart {
+    position: fixed;
+    width: 100vw;
+    height: 100vh;
+    z-index: 2000;
+    background: rgba($color-black, 0.8);
+
+    &__container {
+        width: 70%;
+        height: 80%;
+        background: $color-white;
+
+        @include absCenter;
+    }
+
+    &__close {
+        color: $color-primary;
+        display: inline-block;
+        position: absolute;
+        top: -.7em;
+        right: -.7em;
+        line-height: 1;
+        background: white;
+        border-radius: 100px;
+        cursor: pointer;
+
+        fa {
+            padding: 2px;
+        }
+    }
+
+    &__empty {
+        @include absCenter;
+    }
+}

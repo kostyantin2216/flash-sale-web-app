@@ -41,7 +41,9 @@ export class LoginComponent implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-    this.fragmentSub.unsubscribe();
+    if (this.fragmentSub) {
+      this.fragmentSub.unsubscribe();
+    }
   }
 
   performLogin(form: NgForm) {

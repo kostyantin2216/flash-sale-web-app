@@ -29,7 +29,9 @@ export class ForgotPasswordStep1Component implements OnInit, OnDestroy {
   }
 
   ngOnDestroy() {
-      this.emailSub.unsubscribe();
+    if (this.emailSub) {
+        this.emailSub.unsubscribe();
+    }
   }
 
   onNext(form: NgForm) {

@@ -90,6 +90,10 @@
     margin-right: $margin-big !important;
 }
 
+.no-margin {
+    margin: 0 !important;
+}
+
 .hide-backface {
     backface-visibility: hidden;
 }
@@ -126,5 +130,9 @@
 }
 
 .capitalize {
-    text-transform: capitalize;
+    text-transform: capitalize !important;
+}
+
+.text-center {
+    text-align: center !important;
 }

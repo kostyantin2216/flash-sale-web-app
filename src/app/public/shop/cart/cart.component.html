@@ -1,3 +1,19 @@
-<p>
-  cart works!
-</p>
+<div class="shopping-cart">
+
+  <div class="shopping-cart__container">
+      <div class="shopping-cart__close"><a (click)="closeCart()"><fa name="times-circle" size="2x"></fa></a></div>
+
+      <h2 class="heading-secondary text-center no-margin">My Shopping Cart</h2>
+
+      <hr />
+
+      <div class="shopping-cart__products" *ngIf="(products$ | async).length">
+        <app-cart-product *ngFor="let product of (products$ | async)" [product]="product"></app-cart-product>
+      </div>
+
+      <div class="shopping-cart__empty" *ngIf="!(products$ | async).length">
+        Shopping cart is empty
+      </div>
+  </div>
+
+</div>
