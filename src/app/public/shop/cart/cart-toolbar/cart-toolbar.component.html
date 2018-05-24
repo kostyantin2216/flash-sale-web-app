@@ -1,0 +1,21 @@
+<div class="cart-toolbar">
+
+  <div class="cart-toolbar__expiry">
+    <span class="cart-toolbar__expiry--label">
+      Expires In:
+    </span>
+    <span class="cart-toolbar__expiry--value">
+      <app-countdown [millis]="expiresIn" (complete)="onExpired()"></app-countdown>
+    </span>
+  </div>
+  
+  <div class="cart-toolbar__right">
+    <div class="cart-toolbar__checkout">
+      <button class="btn btn--green">Checkout</button>
+    </div>
+
+    <div class="cart-toolbar__total-price">
+      {{ totalPrice }}R (Total Price)
+    </div>
+  </div>
+</div>

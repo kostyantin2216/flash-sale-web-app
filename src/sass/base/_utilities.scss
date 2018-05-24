@@ -34,6 +34,10 @@
     padding-bottom: $padding-big !important;
 }
 
+.margin-tiny {
+    margin: $margin-tiny !important;
+}
+
 .margin-small {
     margin: $margin-small !important;
 }
@@ -135,4 +139,8 @@
 
 .text-center {
     text-align: center !important;
+}
+
+.cursor-pointer {
+    cursor: pointer !important;
 }

@@ -1,3 +1,4 @@
+import { CartGuard } from './cart/cart.guard';
 import { ProductDetailsGuard } from './product-details/product-details.guard';
 import { ProductDetailsComponent } from './product-details/product-details.component';
 import { ProductListComponent } from './product-list/product-list.component';
@@ -10,6 +11,7 @@ const shopRoutes: Routes = [
     {
         path: 'shop',
         component: ShopComponent,
+        canActivate: [CartGuard],
         children: [
             {
                 path: '',

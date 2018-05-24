@@ -3,7 +3,8 @@
   <a class="toolbar__logout toolbar__link" (click)="logout()" *ngIf="(auth$ | async).authenticated"><fa name="sign-out" ></fa>Log Out</a>
   <a class="toolbar__logout toolbar__link" [routerLink]="['/auth', 'login']" *ngIf="!(auth$ | async).authenticated"><fa name="sign-in" ></fa>Log In</a>
 
-  <a class="toolbar__cart toolbar__link" (click)="showCart()" *ngIf="(cartState$ | async) === CartState.IDLE"><fa name="shopping-cart"></fa>{{ cartItems }} items in cart</a>
+  <a class="toolbar__cart toolbar__link cursor-pointer" (click)="showCart()" *ngIf="(cartState$ | async) === CartState.IDLE"><fa name="shopping-cart"></fa>{{ cartItems }} items in cart</a>
+  <a class="toolbar__cart toolbar__link loading-text" *ngIf="(cartState$ | async) === CartState.LOADING">Loading cart<span class="one">.</span><span class="two">.</span><span class="three">.</span></a>
   <a class="toolbar__cart toolbar__link loading-text" *ngIf="(cartState$ | async) === CartState.ADDING">Adding item to cart<span class="one">.</span><span class="two">.</span><span class="three">.</span></a>
   <a class="toolbar__cart toolbar__link loading-text" *ngIf="(cartState$ | async) === CartState.REMOVING">Removing item from cart<span class="one">.</span><span class="two">.</span><span class="three">.</span></a>
 

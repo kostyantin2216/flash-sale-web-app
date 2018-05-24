@@ -15,6 +15,7 @@ export const LOAD_PRODUCT_DETAILS = 'LOAD_PRODUCT_DETAILS';
 export const SET_PRODUCTS = 'SET_PRODUCTS';
 export const SET_PRODUCT_DETAILS = 'SET_PRODUCT_DETAILS';
 
+export const LOAD_CART = 'LOAD_CART';
 export const SET_CART = 'SET_CART';
 export const ADD_TO_CART = 'ADD_TO_CART';
 export const REMOVE_FROM_CART = 'REMOVE_FROM_CART';
@@ -74,6 +75,14 @@ export class SetProductDetails implements Action {
 }
 
 
+export class LoadCart  implements Action {
+    readonly type = LOAD_CART;
+
+    constructor(
+        public payload: string
+    ) { }
+}
+
 export class SetCart implements Action {
     readonly type = SET_CART;
 
@@ -101,4 +110,4 @@ export class RemoveFromCart implements Action {
 
 export type ShopActions = ToggleLoader | ToggleCart | SetCartState
 | LoadProducts | LoadProductDetails | SetProducts | SetProductDetails
-| SetCart | AddToCart | RemoveFromCart;
+| LoadCart | SetCart | AddToCart | RemoveFromCart;

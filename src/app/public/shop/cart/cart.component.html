@@ -3,12 +3,24 @@
   <div class="shopping-cart__container">
       <div class="shopping-cart__close"><a (click)="closeCart()"><fa name="times-circle" size="2x"></fa></a></div>
 
-      <h2 class="heading-secondary text-center no-margin">My Shopping Cart</h2>
+      <h2 class="heading-secondary text-center margin-tiny">
+        <fa name="shopping-cart" size="x2" class="shopping-cart__title-icon--left"></fa>
+        My Shopping Cart
+        <fa name="shopping-cart" size="x2" class="shopping-cart__title-icon--right"></fa>
+      </h2>
 
-      <hr />
+      <hr/>
 
-      <div class="shopping-cart__products" *ngIf="(products$ | async).length">
-        <app-cart-product *ngFor="let product of (products$ | async)" [product]="product"></app-cart-product>
+      <div class="shopping-cart__not-empty" *ngIf="(products$ | async).length">
+        <div class="shopping-cart__products">
+          <app-cart-product *ngFor="let product of (products$ | async)" [product]="product"></app-cart-product>
+        </div>
+
+        <hr/>
+        
+        <div class="shopping-cart__toolbar">
+            <app-cart-toolbar></app-cart-toolbar>
+        </div>
       </div>
 
       <div class="shopping-cart__empty" *ngIf="!(products$ | async).length">

@@ -1,21 +1,48 @@
+@import '~sass/abstract/variables';
+
 .cart-product {
-    &__remove {
-        
-    }
+    display: table;
+    width: 100%;
+    border-bottom: 1px solid $color-grey-dark-2;
+    height: 10rem;
+    padding: .5rem 0;
 
     &__image {
-
+        height: 10rem;
+        width: 25%;
+        float: left;
+        object-fit: contain;
     }
 
-    &__brand {
+    &__right {
+        display: inline-block;
+        height: 10rem;
+        width: 75%;
 
+        &--top {
+            height: 6.5rem;
+        }
+
+        &--bottom {
+            height: 3.5rem;
+        }
     }
 
-    &__name {
+    &__details {
+        display: inline-block;
+        width: 70%;
 
+        &--brand {
+
+        }
+
+        &--name {
+
+        }
     }
 
-    &__price {
-
+    &__price {        
+        display: inline-block;
+        width: 29%;
     }
 }

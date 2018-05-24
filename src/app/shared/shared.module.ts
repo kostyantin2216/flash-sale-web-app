@@ -2,6 +2,7 @@ import { NgModule } from "@angular/core";
 import { CommonModule } from "@angular/common";
 import { CounterInputComponent } from "./counter-input/counter-input.component";
 import { LoaderComponent } from './loader/loader.component';
+import { CountdownComponent } from './countdown/countdown.component';
 
 @NgModule({
     imports: [
@@ -9,11 +10,13 @@ import { LoaderComponent } from './loader/loader.component';
     ],
     declarations: [
         CounterInputComponent,
-        LoaderComponent
+        LoaderComponent,
+        CountdownComponent
     ],
     exports: [
         CounterInputComponent,
-        LoaderComponent
+        LoaderComponent,
+        CountdownComponent
     ]
 })
 export class SharedModule { }

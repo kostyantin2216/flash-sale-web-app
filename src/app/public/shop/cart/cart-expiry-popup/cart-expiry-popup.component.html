@@ -1,0 +1,15 @@
+<div class="expiry-popup" [ngClass]="{ 'expiry-popup__visible': showSelf }">
+  <div class="expiry-popup__close"><a (click)="close()"><fa name="times" size="lg"></fa></a></div>
+
+  <div class="expiry-popup__loaded" [style.opacity]="loading ? 0 : 1">
+    <h3 class="expiry-popup__title">Cart Expires In</h3>
+    <div class="expiry-popup__countdown">
+      <app-countdown [millis]="expiresIn" (complete)="onExpired()"></app-countdown>
+    </div>
+    <button class="btn btn--white btn--fullblock" (click)="giveMeMoreTime()">Give me more time!</button>
+  </div>
+  
+  <div class="expiry-popup__loading" [style.opacity]="loading ? 1 : 0">
+    <app-loader color="#fff"></app-loader>
+  </div>
+</div>

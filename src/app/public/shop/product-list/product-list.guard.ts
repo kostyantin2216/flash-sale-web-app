@@ -16,7 +16,7 @@ export class ProductListGuard implements CanActivate {
       return this.store.select(state => state.shop.products)
           .take(1)
           .map((products: ProductCollections) => {
-              if (products.isEmpty()) {
+              if (products === undefined || products.isEmpty()) {
                   this.store.dispatch({
                       type: TOGGLE_LOADER,
                       payload: true

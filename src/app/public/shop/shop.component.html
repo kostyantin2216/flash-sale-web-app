@@ -4,5 +4,7 @@
     <router-outlet *ngIf="!(showingLoader$ | async)"></router-outlet>
     <app-loader *ngIf="(showingLoader$ | async)"></app-loader>
 
+    <app-cart-expiry-popup></app-cart-expiry-popup>
+
     <app-footer></app-footer>
 </div>

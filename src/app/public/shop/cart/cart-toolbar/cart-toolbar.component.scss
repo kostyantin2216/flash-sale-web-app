@@ -1,0 +1,28 @@
+@import "~sass/abstract/variables";
+
+.cart-toolbar {
+    margin-top: .4rem;
+
+    &__expiry {
+        display: inline-block;
+        width: 24%;
+        float: left;
+    }
+
+    &__right {
+        display: inline-block;
+        width: 75%;
+    }
+
+    &__checkout {
+        display: inline-block;
+        width: 69%;
+    }
+
+    &__total-price {
+        font-weight: 600;
+        color: $color-primary;
+        display: inline-block;
+        width: 29%;
+    }
+}

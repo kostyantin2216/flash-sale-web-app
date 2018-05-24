@@ -1,4 +1,4 @@
-import { ShoppingCartService } from './service/cart/shopping-cart.service';
+import { CartGuard } from './public/shop/cart/cart.guard';
 import { HttpClientModule } from '@angular/common/http';
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule, forwardRef } from '@angular/core';
@@ -29,6 +29,7 @@ import { ShopEffects } from './public/shop/store/shop.effects';
 import { FixedTitleDirective } from './shared/fixed-title.directive';
 import { CounterInputComponent } from './shared/counter-input/counter-input.component';
 import { ProductListGuard } from './public/shop/product-list/product-list.guard';
+import { ShoppingCartService } from './service/cart/shopping-cart.service';
 
 import '../rxjs.imports';
 
@@ -64,7 +65,8 @@ import '../rxjs.imports';
 //    S3Service,
     NotAuthGuard,
     ProductListGuard,
-    ProductDetailsGuard
+    ProductDetailsGuard,
+    CartGuard
   ],
   bootstrap: [AppComponent]
 })

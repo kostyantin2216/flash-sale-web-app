@@ -19,6 +19,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { ProductSectionComponent } from './product-list/product-section/product-section.component';
 import { ProductVariantsComponent } from './product-details/product-variants/product-variants.component';
 import { CartProductComponent } from './cart/cart-product/cart-product.component';
+import { CartToolbarComponent } from './cart/cart-toolbar/cart-toolbar.component';
+import { CartExpiryPopupComponent } from './cart/cart-expiry-popup/cart-expiry-popup.component';
 
 @NgModule({
     declarations: [
@@ -31,7 +33,9 @@ import { CartProductComponent } from './cart/cart-product/cart-product.component
         FooterComponent,
         ProductSectionComponent,
         ProductVariantsComponent,
-        CartProductComponent
+        CartProductComponent,
+        CartToolbarComponent,
+        CartExpiryPopupComponent
     ],
     imports: [
         CommonModule,

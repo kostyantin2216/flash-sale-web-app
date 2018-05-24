@@ -16,7 +16,8 @@ export interface ShopState {
 
 const INITIAL_STATE: ShopState = {
     cart: {
-        token: null,
+        token: localStorage.getItem('cartToken'),
+        expiresOn: 0,
         products: []
     },
     products: new ProductCollections(),
@@ -56,6 +57,11 @@ export function shopReducer(state = INITIAL_STATE, action: ShopActions.ShopActio
                 productDetails: action.payload
             };
         case ShopActions.SET_CART:
+            if (action.payload.token) {
+                localStorage.setItem('cartToken', action.payload.token);
+            } else {
+                localStorage.removeItem('cartToken');
+            }
             return {
                 ...state,
                 cart: action.payload

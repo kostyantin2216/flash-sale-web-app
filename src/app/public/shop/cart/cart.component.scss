@@ -1,6 +1,9 @@
 @import '~sass/abstract/mixins';
 @import '~sass/abstract/variables';
 
+$heading-height: 4rem - (2 * $margin-tiny);
+$toolbar-height: 3rem;
+
 .shopping-cart {
     position: fixed;
     width: 100vw;
@@ -10,8 +13,9 @@
 
     &__container {
         width: 70%;
-        height: 80%;
+        height: 95%;
         background: $color-white;
+        border-radius: $border-radius;
 
         @include absCenter;
     }
@@ -20,8 +24,8 @@
         color: $color-primary;
         display: inline-block;
         position: absolute;
-        top: -.7em;
-        right: -.7em;
+        top: -.7rem;
+        right: -.7rem;
         line-height: 1;
         background: white;
         border-radius: 100px;
@@ -32,7 +36,34 @@
         }
     }
 
+    &__title-icon {
+        &--left {
+            padding-right: 2rem;
+        }
+
+        &--right {
+            padding-left: 2rem;
+        }
+    }
+
+    &__not-empty {
+        height: calc(100% - #{$heading-height});
+    }
+
     &__empty {
         @include absCenter;
     }
+
+    &__products {
+        height: calc(100% - #{$heading-height} - #{$toolbar-height});
+        overflow-y: scroll;
+    }
+
+    &__toolbar {
+        height: 5rem;
+    }
+}
+
+.heading-secondary {
+    height: 4rem;
 }

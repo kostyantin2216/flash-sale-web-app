@@ -1,14 +1,23 @@
 <div class="cart-product">
-  <a class="cart-product__remove" (click)="removeProduct()"><fa name="times" size="lg"></fa></a>
-
   <img [src]="product.image" class="cart-product__image" />
 
-  <p class="cart-product__brand">{{ product.brand }}</p>
+  <div class="cart-product__right">
+    <div class="cart-product__right--top">
+      <div class="cart-product__details">
+        <p class="cart-product__details--brand">{{ product.brand }}</p>
 
-  <h3 class="cart-product__name">{{ product.name }}</h3>
+        <h3 class="cart-product__details--name">{{ product.name }}</h3>
+      </div>
 
-  <p class="cart-product__price">
-    {{ product.price }}R
-  </p>
+      <p class="cart-product__price">
+        {{ stockCount }} x {{ product.price }}R
+      </p>
+    </div>
+
+    <div class="cart-product__right--bottom">
+      <button class="cart-product__remove btn btn--green" (click)="removeProduct()"><fa name="times" size="lg"></fa>&nbsp;&nbsp;Remove</button>
+      <button class="cart-product__view btn btn--green" (click)="viewProduct()"><fa name="eye" size="lg"></fa>&nbsp;&nbsp;View</button>
+    </div>
+  </div>
 
 </div>

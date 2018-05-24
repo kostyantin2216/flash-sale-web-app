@@ -1,3 +1,4 @@
+import { ProductVariantsComponent } from './product-variants/product-variants.component';
 import { ShoppingCartState } from './../../../service/cart/shopping-cart.state';
 import { DetailedProduct } from './../../../service/product/detailed-product.model';
 import { Subscription } from 'rxjs/Subscription';
@@ -17,7 +18,8 @@ import * as ShopActions from './../store/shop.actions';
 })
 export class ProductDetailsComponent implements OnInit {
 
-  // https://www.onedayonly.co.za/light-room-mini-portable-photo-studio-light-box-3.html
+  @ViewChild(ProductVariantsComponent)
+  private variantsComponent: ProductVariantsComponent;
 
   productDetails$: Observable<DetailedProduct>;
 
@@ -47,11 +49,14 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
-    this.store.dispatch(new ShopActions.SetCartState(ShoppingCartState.ADDING));
-    this.productDetails$.take(1).subscribe((product: DetailedProduct) => {
-      this.store.dispatch(new ShopActions.AddToCart(product));
-    });
-    this.router.navigate(['/']);
+    if (this.variantsComponent.selectedVariant !== null) {
+      this.store.dispatch(new ShopActions.SetCartState(ShoppingCartState.ADDING));
+      this.productDetails$.take(1).subscribe((product: DetailedProduct) => {
+        product.variants = this.variantsComponent.selectedVariant;
+        this.store.dispatch(new ShopActions.AddToCart(product));
+      });
+      this.router.navigate(['/']);
+    }
   }
 
 }

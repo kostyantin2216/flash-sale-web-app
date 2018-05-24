@@ -38,7 +38,10 @@ export class ToolbarComponent implements OnInit, OnDestroy {
     this.auth$ = this.store.pipe(select('auth'));
     this.cartState$ = this.store.select(state => state.shop.cartState);
     this.productsSub = this.store.select(state => state.shop.cart.products)
-                                 .subscribe((products: OrderedProduct[]) => this.cartItems = products.length);
+                                 .subscribe((products: OrderedProduct[]) => {
+                                   console.log('products in cart', products.length);
+                                   return this.cartItems = products.length;
+                                 });
     this.cartVisibilitySub = this.store.select(state => state.shop.showingCart)
                                        .subscribe(showingCart => this.cartVisible = showingCart);
   }
