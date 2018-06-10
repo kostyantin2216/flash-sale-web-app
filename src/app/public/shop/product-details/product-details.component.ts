@@ -21,12 +21,12 @@ export class ProductDetailsComponent implements OnInit {
   @ViewChild(ProductVariantsComponent)
   private variantsComponent: ProductVariantsComponent;
 
+  @ViewChild(NgxImageGalleryComponent) 
+  ngxImageGallery: NgxImageGalleryComponent;
+
   productDetails$: Observable<DetailedProduct>;
 
-  @ViewChild(NgxImageGalleryComponent) ngxImageGallery: NgxImageGalleryComponent;
-
   images: GALLERY_IMAGE[] = [];
-
   galleryConf: GALLERY_CONF = {
     imageOffset: '0px',
     showCloseControl: false,
@@ -49,7 +49,9 @@ export class ProductDetailsComponent implements OnInit {
   }
 
   addToCart() {
+    console.log('adding to cart');
     if (this.variantsComponent.selectedVariant !== null) {
+      console.log('variant exists');
       this.store.dispatch(new ShopActions.SetCartState(ShoppingCartState.ADDING));
       this.productDetails$.take(1).subscribe((product: DetailedProduct) => {
         product.variants = this.variantsComponent.selectedVariant;

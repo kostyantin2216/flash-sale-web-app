@@ -26,7 +26,7 @@ export class ProductService {
     }
 
     calculateSavingsPercentage(price: number, retailPrice: number): number {
-        return Math.ceil((100 * price) / retailPrice);
+        return 100 - Math.ceil((100 * price) / retailPrice);
     }
 
     private builUrl(suffix) {

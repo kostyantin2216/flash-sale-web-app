@@ -29,20 +29,20 @@ export function getTotalStockCount(variants: ProductVariants): number {
     }
 }
 
-export function buildVariantSelection(option: string, stock: number, intialVariants: ProductVariants): ProductVariants {
-    if ('stock' in intialVariants) {
+export function buildVariantSelection(option: string, stock: number, initialVariants: ProductVariants): ProductVariants {
+    if ('stock' in initialVariants) {
         return { stock: stock };
     } else {
-        let props = Object.keys(intialVariants);
+        const props = Object.keys(initialVariants);
         if (props.length) {
-            intialVariants[props[0]].forEach((variant: Variant) => {
-                let options = Object.keys(variant);
+            const variants = initialVariants[props[0]];
+            for (let i = 0; i < variants.length; i++) {
+                let options = Object.keys(variants[i]);
                 if (options.length && options[0] === option) {
-                    return { [props[0]]: { [option]: { stock: stock } } };
+                    return { [props[0]]: [{ [option]: { stock: stock } }] };
                 }
-            });
+            }
         }
     }
-
     return null;
 }
